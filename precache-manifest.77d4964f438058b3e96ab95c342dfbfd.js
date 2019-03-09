@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/decentralized-form/static/js/runtime~main.b7643411.js"
   },
   {
-    "revision": "7401dcb00c7d124e27b1",
-    "url": "/decentralized-form/static/js/main.1b03a25d.chunk.js"
+    "revision": "8137953e9563230eb0a1",
+    "url": "/decentralized-form/static/js/main.8cd14059.chunk.js"
   },
   {
     "revision": "6ab5ea11240af5a7bb8b",
     "url": "/decentralized-form/static/js/2.b1c26f2d.chunk.js"
   },
   {
-    "revision": "7401dcb00c7d124e27b1",
+    "revision": "8137953e9563230eb0a1",
     "url": "/decentralized-form/static/css/main.7cd067e1.chunk.css"
   },
   {
-    "revision": "7be1030c51029d2d476c5c4ba3057fb0",
+    "revision": "1285300d1a7f8ce7ad7f6f068f419445",
     "url": "/decentralized-form/index.html"
   }
 ];
