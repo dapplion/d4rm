@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/decentralized-form/precache-manifest.77d4964f438058b3e96ab95c342dfbfd.js"
+  "/d4rm/precache-manifest.6adbb09dea16fb0b3b11c11ac3344a33.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/decentralized-form/index.html", {
+workbox.routing.registerNavigationRoute("/d4rm/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });

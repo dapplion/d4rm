@@ -1,14 +1,14 @@
 {
-  "main.css": "/decentralized-form/static/css/main.7cd067e1.chunk.css",
-  "main.js": "/decentralized-form/static/js/main.8cd14059.chunk.js",
-  "main.js.map": "/decentralized-form/static/js/main.8cd14059.chunk.js.map",
-  "runtime~main.js": "/decentralized-form/static/js/runtime~main.b7643411.js",
-  "runtime~main.js.map": "/decentralized-form/static/js/runtime~main.b7643411.js.map",
-  "static/js/2.b1c26f2d.chunk.js": "/decentralized-form/static/js/2.b1c26f2d.chunk.js",
-  "static/js/2.b1c26f2d.chunk.js.map": "/decentralized-form/static/js/2.b1c26f2d.chunk.js.map",
-  "index.html": "/decentralized-form/index.html",
-  "precache-manifest.77d4964f438058b3e96ab95c342dfbfd.js": "/decentralized-form/precache-manifest.77d4964f438058b3e96ab95c342dfbfd.js",
-  "service-worker.js": "/decentralized-form/service-worker.js",
-  "static/css/main.7cd067e1.chunk.css.map": "/decentralized-form/static/css/main.7cd067e1.chunk.css.map",
-  "static/media/loader.gif": "/decentralized-form/static/media/loader.9330a77a.gif"
+  "main.css": "/d4rm/static/css/main.1d7e0c45.chunk.css",
+  "main.js": "/d4rm/static/js/main.608f824b.chunk.js",
+  "main.js.map": "/d4rm/static/js/main.608f824b.chunk.js.map",
+  "runtime~main.js": "/d4rm/static/js/runtime~main.e7c72cf6.js",
+  "runtime~main.js.map": "/d4rm/static/js/runtime~main.e7c72cf6.js.map",
+  "static/js/2.a6d367b9.chunk.js": "/d4rm/static/js/2.a6d367b9.chunk.js",
+  "static/js/2.a6d367b9.chunk.js.map": "/d4rm/static/js/2.a6d367b9.chunk.js.map",
+  "index.html": "/d4rm/index.html",
+  "precache-manifest.6adbb09dea16fb0b3b11c11ac3344a33.js": "/d4rm/precache-manifest.6adbb09dea16fb0b3b11c11ac3344a33.js",
+  "service-worker.js": "/d4rm/service-worker.js",
+  "static/css/main.1d7e0c45.chunk.css.map": "/d4rm/static/css/main.1d7e0c45.chunk.css.map",
+  "static/media/loader.gif": "/d4rm/static/media/loader.8f677527.gif"
 }
