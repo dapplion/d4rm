@@ -1,4 +1,16 @@
-# Decentralized survery platform
+# D4RM
+
+> Decentralized forms, for decentralized projects
+
+<p align="center">
+  <a href="http://dapplion.github.io/d4rm">
+    <img width="300" src="/ui/src/logo.png">
+  </a>
+</p>
+
+It doesn't makes sense that decentralized projects have to use Google Forms or Typeform to aggregate their user's opinion. This platform is rough POC do so in a decentralized fashion.
+
+## Methodology
 
 - Use the generator UI to create a JSON that describes a form according to the specs.
 - Upload the resulting JSON to IPFS and send a link with the resulting hash `decentralized-form.eth/QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4` to the form users.
