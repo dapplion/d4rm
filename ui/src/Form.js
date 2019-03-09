@@ -26,7 +26,6 @@ export default class Form extends Component {
         console.log({hash, obj})
         if (obj.title && obj.questions && Array.isArray(obj.questions) && obj.submit) {
             this.setState({title: obj.title, questions: obj.questions, submit: obj.submit, validForm: true})
-            console.log({obj})
             this.setState({loading: false})
         } else {
             this.setState({error: 'Form obj is not correct'})

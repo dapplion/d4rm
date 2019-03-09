@@ -6,6 +6,7 @@ import Create from "./Create"
 import Share from "./Share"
 import Results from "./Results"
 import Form from './Form'
+import Home from './Home'
 import './fromTemplate.css'
 import './customizeBootstrap.css'
 
@@ -25,7 +26,7 @@ class App extends Component {
       <div className="App">
         <Nav/>
         <div className="container" style={{marginTop: '140px'}}>
-          <Route path="/" exact render={() => (<h1>Hello</h1>)} />
+          <Route path="/" exact component={Home} />
           {/* <Route path="/create" component={Create} />
           <Route path="/share" component={Share} /> */}
           <Route path="/results" component={Results} />

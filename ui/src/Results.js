@@ -31,6 +31,7 @@ export default class Results extends Component {
           // Parse existing answers
           const submitContract = new web3.eth.Contract(sumbitContractAbi, this.state.submit.address);
           const events = await submitContract.getPastEvents('Submission', {fromBlock: '0'})
+          console.log({events})
 
           const submissions = events.map(event => {
             const answers = (event.returnValues.answers || "").replace('0x', '')
@@ -130,7 +131,6 @@ export default class Results extends Component {
             </div>
             )
           })}
-
           
         </div>
     );
