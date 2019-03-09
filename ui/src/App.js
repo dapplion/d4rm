@@ -21,7 +21,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router>
       <div className="App">
         <Nav/>
         <div className="container" style={{marginTop: '140px'}}>
