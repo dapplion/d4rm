@@ -1,0 +1,24 @@
+.table td, .table th {
+    padding: 0 !important;
+    border-width: 0px !important;
+}
+
+.bg-secondary {
+    background-color: #f2e6e7 !important;
+}
+
+#mainNav .navbar-brand {
+    color: black;
+}
+
+#mainNav .navbar-nav li.nav-item a.nav-link {
+    color: #464646;
+  }
+  
+  #mainNav .navbar-nav li.nav-item a.nav-link:hover {
+    color: black;
+  }
+  
+  #mainNav .navbar-nav li.nav-item a.nav-link.active {
+    color: black;
+  }
