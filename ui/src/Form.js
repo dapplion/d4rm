@@ -16,67 +16,83 @@ export default class Form extends Component {
   }
 
   async componentDidMount() {
-    const hash = parseHash()
+      try {
+        const hash = parseHash()
 
-    // Parse hash
-    if (ipfs.isHash(hash)) {
-        this.setState({loading: true})
-      const obj = await ipfs.cat(hash)
-      console.log({hash, obj})
-      if (obj.title && obj.questions && Array.isArray(obj.questions) && obj.submit) {
-        this.setState({title: obj.title, questions: obj.questions, submit: obj.submit, validForm: true})
-        console.log({obj})
-        this.setState({loading: false})
-      } else {
-        this.setState({error: 'Form obj is not correct'})
-        this.setState({loading: false})
+        // Parse hash
+        if (ipfs.isHash(hash)) {
+            this.setState({loading: true})
+        const obj = await ipfs.cat(hash)
+        console.log({hash, obj})
+        if (obj.title && obj.questions && Array.isArray(obj.questions) && obj.submit) {
+            this.setState({title: obj.title, questions: obj.questions, submit: obj.submit, validForm: true})
+            console.log({obj})
+            this.setState({loading: false})
+        } else {
+            this.setState({error: 'Form obj is not correct'})
+            this.setState({loading: false})
+        }
+        } else {
+            this.setState({error: 'No valid IPFS hash provided'})
+        }
+      } catch (e) {
+        this.setState({error: `Error: ${e.stack}`, loading: false})
       }
-    } else {
-        this.setState({error: 'No valid IPFS hash provided'})
-    }
-
-    
   }
 
   async submit(e) {
-    e.preventDefault();
-    const answerIds = Object.values(this.state.answers).map(answerIndex => {
-        if (isNaN(answerIndex)) throw Error('Answer index must be a number')
-        if (answerIndex > 255) throw Error('Max number of possible answers for questions is 255')
-        return parseInt(answerIndex).toString(16).padStart(2, '0')
-    })
-    const answerBytes = '0x' + answerIds.join('')
-    console.log({answerBytes, submit: this.state.submit})
-    if (this.state.submit.to === 'rinkeby') {
-      if (window.ethereum) {
-        await window.ethereum.enable();
-        const web3 = new Web3('https://rinkeby.infura.io');
-        const submitContract = new web3.eth.Contract(sumbitContractAbi, this.state.submit.address);
-        if (!web3.utils.isAddress(window.ethereum.selectedAddress)) {
-          throw Error(`Could not get address from window.ethereum.selectedAddress ${window.ethereum.selectedAddress}`)
-        }
-        const data = submitContract.methods.submit(answerBytes).encodeABI();
-        const transactionParameters = {
-          to: this.state.submit.address,
-          from: window.ethereum.selectedAddress,
-          data,
-        }
-        window.ethereum.sendAsync({
-          method: 'eth_sendTransaction',
-          params: [transactionParameters],
-          from: window.ethereum.selectedAddress,
-        }, function (err, result) {
-          console.log({err, result})
-          // A typical node-style, error-first callback.
-          // The result varies by method, per the JSON RPC API.
-          // For example, this method will return a transaction hash on success.
+      try {
+        e.preventDefault();
+        const answerIds = Object.values(this.state.answers).map(answerIndex => {
+            if (isNaN(answerIndex)) throw Error('Answer index must be a number')
+            if (answerIndex > 255) throw Error('Max number of possible answers for questions is 255')
+            return parseInt(answerIndex).toString(16).padStart(2, '0')
         })
-      } else {
-        this.setState({error: 'You must have a recent version of metamask installed'})
+        const answerBytes = '0x' + answerIds.join('')
+        console.log({answerBytes, submit: this.state.submit})
+        if (this.state.submit.to === 'rinkeby') {
+            if (window.ethereum) {
+                await window.ethereum.enable();
+                const web3 = new Web3('https://rinkeby.infura.io');
+                // Check addresses
+                if (!web3.utils.isAddress(window.ethereum.selectedAddress)) {
+                    throw Error(`Could not get address from window.ethereum.selectedAddress ${window.ethereum.selectedAddress}`)
+                }
+                if (!web3.utils.isAddress(this.state.submit.address)) {
+                    throw Error(`Submit address is not valid: ${this.state.submit.address}`)
+                }
+
+                const submitContract = new web3.eth.Contract(sumbitContractAbi, this.state.submit.address);
+                const data = submitContract.methods.submit(answerBytes).encodeABI();
+                const transactionParameters = {
+                to: this.state.submit.address,
+                from: window.ethereum.selectedAddress,
+                data,
+                }
+                this.setState({submitting: true})
+                async function sendAsync() {
+                    return new Promise((resolve, reject) => {
+                        window.ethereum.sendAsync({
+                            method: 'eth_sendTransaction',
+                            params: [transactionParameters],
+                            from: window.ethereum.selectedAddress,
+                        }, function (err, result) {
+                            if (err) reject(err)
+                            else resolve(result)
+                        })
+                    })
+                }
+                const result = await sendAsync()
+                this.setState({submissionHash: (result || {}).result, submitting: false})
+            } else {
+                this.setState({error: 'You must have a recent version of metamask installed'})
+            }
+        } else {
+            this.setState({error: 'Unsupported submit method'})
+        }
+      } catch (e) {
+        this.setState({error: `Error: ${e.stack}`, submitting: false, loading: false})
       }
-    } else {
-      this.setState({error: 'Unsupported submit method'})
-    }
   }
 
   render() {
@@ -84,6 +100,8 @@ export default class Form extends Component {
     console.log(this.state.answers)
 
     if (this.state.loading) return <Loading/>
+
+    const txHashUrl = (this.state.submit || {}).to === 'rinkeby' ? `https://rinkeby.etherscan.io/tx/${this.state.submissionHash}` : null
 
     return (
         <div>
@@ -130,8 +148,15 @@ export default class Form extends Component {
                     <div className="row mt-3">
                         <div className="col-1"></div>
                         <div className="col-11">
-                            <button type="submit" className="btn btn-primary" onClick={this.submit.bind(this)} disabled={!answersFull}>Submit</button>
-                            <p style={{opacity: 0.5, fontSize: '75%'}}>Submit to {this.state.submit.to} {this.state.submit.address}</p>      
+                            {this.state.submitting ? <h6>Submitting...</h6> : 
+                            this.state.submissionHash ? <div>
+                                <h6>{txHashUrl ? <a href={txHashUrl}>Submitted!</a> : 'Submitted!'} Thank you for participating</h6>
+                            </div> 
+                            : <div>
+                                <button type="submit" className="btn btn-primary" onClick={this.submit.bind(this)} disabled={!answersFull}>Submit</button>
+                                <p style={{opacity: 0.5, fontSize: '75%'}}>Submit to {this.state.submit.to} {this.state.submit.address}</p>   
+                            </div>}
+                               
                         </div>
                     </div>
 

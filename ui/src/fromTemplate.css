@@ -320,14 +320,6 @@
     background-color: #1a252f;
   }
   
-  a {
-    color: #18BC9C;
-  }
-  
-  a:focus, a:hover, a:active {
-    color: #128f76;
-  }
-  
   .btn {
     border-width: 2px;
   }
@@ -367,7 +359,15 @@
   }
 
   .progress-bar {
-      background-color: #f48d5c
+    background-color: #f48d5c
+  }
+
+  a {
+    color: #f48d5c;
+  }
+  
+  a:focus, a:hover, a:active {
+    color: #bf6c44;
   }
 
   

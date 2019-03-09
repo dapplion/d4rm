@@ -3,10 +3,6 @@ import parseHash from './parseHash'
 
 
 export default class Share extends Component {
-  constructor() {
-    super();
-  }
-
 
   render() {
     const hash = parseHash()
@@ -16,7 +12,7 @@ export default class Share extends Component {
             <p>Finally a way to collect feedback in a decentralized way!!</p>
             <form>
                 <div className="input-group">
-                    <input type="text" className="form-control" value={`https://d4rm.io/form/${hash}`} placeholder="Some path" id="copy-input"/>
+                    <input type="text" className="form-control" value={`https://dapplion.github.io/decentralized-form/#/form/${hash}`} placeholder="Some path" id="copy-input" readOnly/>
                 </div>
             </form>
         </div>

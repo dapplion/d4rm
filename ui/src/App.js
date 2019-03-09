@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import ipfs from './ipfs';
+import { HashRouter as Router, Route } from "react-router-dom";
 import Web3 from 'web3';
-import sumbitContractAbi from './SumbitContractAbi.json'
 import Nav from "./Nav"
 import Create from "./Create"
 import Share from "./Share"
@@ -23,13 +21,13 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
         <Nav/>
         <div className="container" style={{marginTop: '140px'}}>
           <Route path="/" exact render={() => (<h1>Hello</h1>)} />
-          <Route path="/create" component={Create} />
-          <Route path="/share" component={Share} />
+          {/* <Route path="/create" component={Create} />
+          <Route path="/share" component={Share} /> */}
           <Route path="/results" component={Results} />
           <Route path="/form" component={Form} />
         </div>

@@ -17,60 +17,63 @@ export default class Results extends Component {
   }
 
   async componentDidMount() {
-    const hash = parseHash()
+    try {
+      const hash = parseHash()
 
-    // Parse hash
-    if (ipfs.isHash(hash)) {
-        this.setState({loading: true})
-      const obj = await ipfs.cat(hash)
-      console.log({hash, obj})
-      if (obj.title && obj.questions && Array.isArray(obj.questions) && obj.submit) {
-        this.setState({title: obj.title, questions: obj.questions, submit: obj.submit, validForm: true})
+      // Parse hash
+      if (ipfs.isHash(hash)) {
+          this.setState({loading: true})
+        const obj = await ipfs.cat(hash)
+        console.log({hash, obj})
+        if (obj.title && obj.questions && Array.isArray(obj.questions) && obj.submit) {
+          this.setState({title: obj.title, questions: obj.questions, submit: obj.submit, validForm: true})
 
-        // Parse existing answers
-        const submitContract = new web3.eth.Contract(sumbitContractAbi, this.state.submit.address);
-        const events = await submitContract.getPastEvents('Submission', {fromBlock: '0'})
+          // Parse existing answers
+          const submitContract = new web3.eth.Contract(sumbitContractAbi, this.state.submit.address);
+          const events = await submitContract.getPastEvents('Submission', {fromBlock: '0'})
 
-        const submissions = events.map(event => {
-          const answers = (event.returnValues.answers || "").replace('0x', '')
-          const parsedAnswers = []
-          for (let i=0; i<obj.questions.length; i++) {
-            const stringPos = i*2 // 2 hex characters per byte
-            const answerIndex = parseInt(answers.slice(stringPos, stringPos+2), 16)
-            parsedAnswers.push({
-              title: obj.questions[i].title,
-              answer: obj.questions[i].answers[answerIndex],
-              answerIndex
-            })
-          }
-          return { answers: parsedAnswers, txHash: event.transactionHash, user: event.returnValues.user }
-        })
-        console.log({submissions})
-
-        // Do math and aggregate the submissions
-        const totalResponses = submissions.length
-        const uniqueResponses = getUnique(submissions, 'user').length
-        const questionsResults = {}
-        submissions.forEach((submission) => {
-          submission.answers.forEach((answer, i) => {
-            if (!questionsResults[i]) questionsResults[i] = {}
-            const j = answer.answerIndex
-            questionsResults[i][j] = questionsResults[i][j] ? questionsResults[i][j] + 1 : 1
+          const submissions = events.map(event => {
+            const answers = (event.returnValues.answers || "").replace('0x', '')
+            const parsedAnswers = []
+            for (let i=0; i<obj.questions.length; i++) {
+              const stringPos = i*2 // 2 hex characters per byte
+              const answerIndex = parseInt(answers.slice(stringPos, stringPos+2), 16)
+              parsedAnswers.push({
+                title: obj.questions[i].title,
+                answer: obj.questions[i].answers[answerIndex],
+                answerIndex
+              })
+            }
+            return { answers: parsedAnswers, txHash: event.transactionHash, user: event.returnValues.user }
           })
-        })
-        console.log(questionsResults)
+          console.log({submissions})
 
-        this.setState({submissions, totalResponses, uniqueResponses, questionsResults})
-        this.setState({loading: false})
+          // Do math and aggregate the submissions
+          const totalResponses = submissions.length
+          const uniqueResponses = getUnique(submissions, 'user').length
+          const questionsResults = {}
+          submissions.forEach((submission) => {
+            submission.answers.forEach((answer, i) => {
+              if (!questionsResults[i]) questionsResults[i] = {}
+              const j = answer.answerIndex
+              questionsResults[i][j] = questionsResults[i][j] ? questionsResults[i][j] + 1 : 1
+            })
+          })
+          console.log(questionsResults)
+
+          this.setState({submissions, totalResponses, uniqueResponses, questionsResults})
+          this.setState({loading: false})
+        } else {
+          this.setState({error: 'Form obj is not correct'})
+          this.setState({loading: false})
+        }
       } else {
-        this.setState({error: 'Form obj is not correct'})
-        this.setState({loading: false})
+          this.setState({error: 'No valid IPFS hash provided'})
       }
-    } else {
-        this.setState({error: 'No valid IPFS hash provided'})
+    } catch(e) {
+      this.setState({error: `Error: ${e.stack}`})
     }
   }
-
 
   render() {
     if (this.state.loading) return <Loading/>
@@ -80,7 +83,7 @@ export default class Results extends Component {
           {this.state.error ? <h5>Error: {this.state.error}</h5> : null}
 
           <h5>{this.state.title}</h5>
-          <table class="table" style={{maxWidth: '300px', borderWidth: '0px', padding: '0px'}}>
+          <table className="table" style={{maxWidth: '300px', borderWidth: '0px', padding: '0px'}}>
             <tbody>
               <tr style={{fontSize: '80%', opacity: '0.7'}}>
                 <td>Total responses</td>
@@ -117,8 +120,8 @@ export default class Results extends Component {
                       <div className="col-1"></div>
                       <div className="col-5">{answer}</div>
                       <div className="col-6">
-                        <div class="progress">
-                          <div class="progress-bar" role="progressbar" style={{width: percent}}>{percent}</div>
+                        <div className="progress">
+                          <div className="progress-bar" role="progressbar" style={{width: percent}}>{percent}</div>
                         </div>
                       </div>
                     </div>
