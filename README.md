@@ -60,3 +60,7 @@ https://dapplion.github.io/d4rm/#/form/QmckmTWYsSTgwsgBj45HAqRirC8WNXLo7FRr11tdN
 I uses a sample at
 
 [QmckmTWYsSTgwsgBj45HAqRirC8WNXLo7FRr11tdN6yboY](https://ipfs.io/ipfs/QmckmTWYsSTgwsgBj45HAqRirC8WNXLo7FRr11tdN6yboY)
+
+## Credits
+
+Developed at EthParis 2019 with the help of Sharmini
