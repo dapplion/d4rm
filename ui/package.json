@@ -10,7 +10,7 @@
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8",
-    "web3": "^1.0.0-beta.48"
+    "web3": "1.0.0-beta.33"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,5 +28,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
 }

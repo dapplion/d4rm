@@ -6,8 +6,6 @@ import './fromTemplate.css'
 import parseHash from './parseHash' 
 import Loading from './Loading'
 
-const web3 = new Web3('https://rinkeby.infura.io');
-window.web3 = web3;
 // web3.eth.getTransactionCount
 
 export default class Results extends Component {
@@ -22,48 +20,53 @@ export default class Results extends Component {
 
       // Parse hash
       if (ipfs.isHash(hash)) {
-          this.setState({loading: true})
+        this.setState({loading: true})
         const obj = await ipfs.cat(hash)
         console.log({hash, obj})
         if (obj.title && obj.questions && Array.isArray(obj.questions) && obj.submit) {
           this.setState({title: obj.title, questions: obj.questions, submit: obj.submit, validForm: true})
 
-          // Parse existing answers
-          const submitContract = new web3.eth.Contract(sumbitContractAbi, this.state.submit.address);
-          const events = await submitContract.getPastEvents('Submission', {fromBlock: '0'})
-          console.log({events})
+          if ((this.state.submit || {}).to === 'rinkeby') {
+            // Parse existing answers
+            const web3Local = new Web3('https://rinkeby.infura.io');
+            const submitContract = new web3Local.eth.Contract(sumbitContractAbi, this.state.submit.address);
+            const events = await submitContract.getPastEvents('Submission', {fromBlock: '4001171'})
+            console.log({events})
 
-          const submissions = events.map(event => {
-            const answers = (event.returnValues.answers || "").replace('0x', '')
-            const parsedAnswers = []
-            for (let i=0; i<obj.questions.length; i++) {
-              const stringPos = i*2 // 2 hex characters per byte
-              const answerIndex = parseInt(answers.slice(stringPos, stringPos+2), 16)
-              parsedAnswers.push({
-                title: obj.questions[i].title,
-                answer: obj.questions[i].answers[answerIndex],
-                answerIndex
-              })
-            }
-            return { answers: parsedAnswers, txHash: event.transactionHash, user: event.returnValues.user }
-          })
-          console.log({submissions})
-
-          // Do math and aggregate the submissions
-          const totalResponses = submissions.length
-          const uniqueResponses = getUnique(submissions, 'user').length
-          const questionsResults = {}
-          submissions.forEach((submission) => {
-            submission.answers.forEach((answer, i) => {
-              if (!questionsResults[i]) questionsResults[i] = {}
-              const j = answer.answerIndex
-              questionsResults[i][j] = questionsResults[i][j] ? questionsResults[i][j] + 1 : 1
+            const submissions = events.map(event => {
+              const answers = (event.returnValues.answers || "").replace('0x', '')
+              const parsedAnswers = []
+              for (let i=0; i<obj.questions.length; i++) {
+                const stringPos = i*2 // 2 hex characters per byte
+                const answerIndex = parseInt(answers.slice(stringPos, stringPos+2), 16)
+                parsedAnswers.push({
+                  title: obj.questions[i].title,
+                  answer: obj.questions[i].answers[answerIndex],
+                  answerIndex
+                })
+              }
+              return { answers: parsedAnswers, txHash: event.transactionHash, user: event.returnValues.user }
             })
-          })
-          console.log(questionsResults)
+            console.log({submissions})
 
-          this.setState({submissions, totalResponses, uniqueResponses, questionsResults})
-          this.setState({loading: false})
+            // Do math and aggregate the submissions
+            const totalResponses = submissions.length
+            const uniqueResponses = getUnique(submissions, 'user').length
+            const questionsResults = {}
+            submissions.forEach((submission) => {
+              submission.answers.forEach((answer, i) => {
+                if (!questionsResults[i]) questionsResults[i] = {}
+                const j = answer.answerIndex
+                questionsResults[i][j] = questionsResults[i][j] ? questionsResults[i][j] + 1 : 1
+              })
+            })
+            console.log(questionsResults)
+
+            this.setState({submissions, totalResponses, uniqueResponses, questionsResults})
+            this.setState({loading: false})
+          } else {
+            this.setState({error: 'Unsupported submit method'})
+          }
         } else {
           this.setState({error: 'Form obj is not correct'})
           this.setState({loading: false})

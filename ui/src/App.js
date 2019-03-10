@@ -14,6 +14,8 @@ const web3 = new Web3('https://rinkeby.infura.io');
 window.web3 = web3;
 // web3.eth.getTransactionCount
 
+console.log('Version: 1552176415442')
+
 class App extends Component {
   constructor() {
     super();
