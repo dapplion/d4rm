@@ -10,17 +10,9 @@
 
 It doesn't makes sense that decentralized projects have to use Google Forms or Typeform to aggregate their user's opinion. This platform is rough POC do so in a decentralized fashion.
 
-## Methodology
+## How
 
-- Use the generator UI to create a JSON that describes a form according to the specs.
-- Upload the resulting JSON to IPFS and send a link with the resulting hash `decentralized-form.eth/QmaozNR7DZHQK1ZcU9p7QdrshMvXqWK6gpu5rmrkPdT3L4` to the form users.
-- Users will fill the answers which will encoded to a bytes array and signed by their address.
-- The form results can be aggregated off-chain or on-chain, where participation can be regulated with some smart contract logic; i.e. having a balance greater than zero of a specific token.
-- Results can be public or private, using an encryption scheme to be discussed.
-
-## Specs
-
-form JSON example:
+Anyone can create a form just by creating a JSON that describes the form with this particular spec: a title, an array of questions, and a submit mechanism.
 
 ```json
 {
@@ -42,12 +34,29 @@ form JSON example:
 }
 ```
 
-form answer example:
+Once the creator uploads the JSON to IPFS, the form is ready to be used at https://dapplion.github.io/d4rm/#/results/QmckmTWYsSTgwsgBj45HAqRirC8WNXLo7FRr11tdN6yboY ! This is a static app that can be distributed as a decentralized website via IPFS and ENS (d4rm.eth for example), and cats the given IPFS hash, parses the JSON and displays the form.
+
+Any user can then access the URL and fill the form. The answers are encoded as ordered ascending bytes: 
 
 ```
-x01
+MethodID: 0xef7fa71b
+[0]:  0000000000000000000000000000000000000000000000000000000000000020
+[1]:  0000000000000000000000000000000000000000000000000000000000000002
+[2]:  0102000000000000000000000000000000000000000000000000000000000000
 ```
 
-## Sample form
+In the demo form the submission mechanism is a smart contract deployed in Rinkeby. It has no access control and anyone can participate n times. This architecture is easily extendable to support cases such as:
+- Only allow participation to users holding > 0 ANT
+- Only allow participation to user holding the EthParis Proof of Attendance Protocol (POAP) ERC-721 badge
+- Reward users with a token on submission
+- Add encryption (NuChyper proxy-reencryption) so users can provide sensitive data, such a contact method
+
+## Demo
+
+Please try by yourself at:
+
+https://dapplion.github.io/d4rm/#/form/QmckmTWYsSTgwsgBj45HAqRirC8WNXLo7FRr11tdN6yboY
+
+I uses a sample at
 
 [QmckmTWYsSTgwsgBj45HAqRirC8WNXLo7FRr11tdN6yboY](https://ipfs.io/ipfs/QmckmTWYsSTgwsgBj45HAqRirC8WNXLo7FRr11tdN6yboY)
