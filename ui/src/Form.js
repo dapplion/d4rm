@@ -22,8 +22,8 @@ export default class Form extends Component {
         // Parse hash
         if (ipfs.isHash(hash)) {
             this.setState({loading: true})
-        const obj = await ipfs.cat(hash)
-        console.log({hash, obj})
+            const obj = await ipfs.cat(hash)
+            console.log({hash, obj})
         if (obj.title && obj.questions && Array.isArray(obj.questions) && obj.submit) {
             this.setState({title: obj.title, questions: obj.questions, submit: obj.submit, validForm: true})
             this.setState({loading: false})
@@ -49,7 +49,7 @@ export default class Form extends Component {
         })
         const answerBytes = '0x' + answerIds.join('')
         console.log({answerBytes, submit: this.state.submit})
-        if (this.state.submit.to === 'rinkeby') {
+        if ((this.state.submit || {}).to === 'rinkeby') {
             if (window.ethereum) {
                 await window.ethereum.enable();
                 const web3 = new Web3('https://rinkeby.infura.io');
@@ -114,7 +114,7 @@ export default class Form extends Component {
                         <div key={i} className="mt-3">
                             <div className="row">
                                 <div className="col-1">
-                                    <h5>{i}</h5>
+                                    <h5>{i+1}</h5>
                                 </div>
                                 <div className="col-11">
                                     <h5>{question.title}</h5>

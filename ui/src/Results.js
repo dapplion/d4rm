@@ -51,6 +51,7 @@ export default class Results extends Component {
 
             // Do math and aggregate the submissions
             const totalResponses = submissions.length
+            const uniqueAddresses = getUnique(submissions, 'user').map(submission => submission.user)
             const uniqueResponses = getUnique(submissions, 'user').length
             const questionsResults = {}
             submissions.forEach((submission) => {
@@ -62,7 +63,7 @@ export default class Results extends Component {
             })
             console.log(questionsResults)
 
-            this.setState({submissions, totalResponses, uniqueResponses, questionsResults})
+            this.setState({submissions, totalResponses, uniqueResponses, questionsResults, uniqueAddresses})
             this.setState({loading: false})
           } else {
             this.setState({error: 'Unsupported submit method'})
@@ -87,7 +88,7 @@ export default class Results extends Component {
           {this.state.error ? <h5>Error: {this.state.error}</h5> : null}
 
           <h5>{this.state.title}</h5>
-          <table className="table" style={{maxWidth: '300px', borderWidth: '0px', padding: '0px'}}>
+          <table className="table" style={{maxWidth: '300px', borderWidth: '0px', padding: '0px', marginBottom: '0px'}}>
             <tbody>
               <tr style={{fontSize: '80%', opacity: '0.7'}}>
                 <td>Total responses</td>
@@ -100,6 +101,11 @@ export default class Results extends Component {
             </tbody>
           </table>
 
+          <details className="address-list">
+            <summary>Unique addresses list</summary>
+            {(this.state.uniqueAddresses || []).map(address => <div>{address}</div>)}
+          </details>
+
           <h3>Results</h3>
           {(this.state.questions || []).map((question, i) => {
             return (
@@ -107,7 +113,7 @@ export default class Results extends Component {
                 
                 <div className="row">
                   <div className="col-1">
-                    <h5>{i}</h5>
+                    <h5>{i+1}</h5>
                   </div>
                   <div className="col-11">
                     <h5>{question.title}</h5>
@@ -118,7 +124,7 @@ export default class Results extends Component {
                   const results = (this.state.questionsResults || {})[i] || {}
                   const total = Object.values(results).reduce((a, c) => a + c, 0)
                   const count = results[j] || 0
-                  const percent = total ? Math.floor(100*count/total) + '%' : null
+                  const percent = total ? Math.round(100*count/total) + '%' : null
                   return <div key={j}>
                     <div className="row">
                       <div className="col-1"></div>
