@@ -1,16 +1,13 @@
 {
-    "title": "EthParis aftermath",
-    "questions": [
-        {
-            "title": "Is EthParis the best hackaton ever?",
-            "answers": [
-                "Yes",
-                "No"
-            ]
-        }
-    ],
-    "submit": {
-        "to": "rinkeby",
-        "address": "0x77E91Ab5af418A6154637216d596d75eB8ecf70a"
+  "title": "EthParis aftermath",
+  "questions": [
+    {
+      "title": "Is EthParis the best hackaton ever?",
+      "answers": ["Yes", "No"]
     }
+  ],
+  "submit": {
+    "to": "rinkeby",
+    "address": "0x77E91Ab5af418A6154637216d596d75eB8ecf70a"
+  }
 }

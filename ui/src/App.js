@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
-import Web3 from 'web3';
-import Nav from "./Nav"
-import Create from "./Create"
-import Share from "./Share"
-import Results from "./Results"
-import Form from './Form'
-import Home from './Home'
-import './fromTemplate.css'
-import './customizeBootstrap.css'
+import Web3 from "web3";
+import Nav from "./Nav";
+import Create from "./Create";
+import Share from "./Share";
+import Results from "./Results";
+import Form from "./Form";
+import Home from "./Home";
+import "./fromTemplate.css";
+import "./customizeBootstrap.css";
 
-const web3 = new Web3('https://rinkeby.infura.io');
+const web3 = new Web3("https://rinkeby.infura.io");
 window.web3 = web3;
 // web3.eth.getTransactionCount
 
-console.log('Version: 1552176415442')
+console.log("Version: 1552176415442");
 
 class App extends Component {
   constructor() {
@@ -25,16 +25,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-      <div className="App">
-        <Nav/>
-        <div className="container" style={{marginTop: '140px'}}>
-          <Route path="/" exact component={Home} />
-          {/* <Route path="/create" component={Create} />
+        <div className="App">
+          <Nav />
+          <div className="container" style={{ marginTop: "140px" }}>
+            <Route path="/" exact component={Home} />
+            {/* <Route path="/create" component={Create} />
           <Route path="/share" component={Share} /> */}
-          <Route path="/results" component={Results} />
-          <Route path="/form" component={Form} />
+            <Route path="/results" component={Results} />
+            <Route path="/form" component={Form} />
+          </div>
         </div>
-      </div>
       </Router>
     );
   }

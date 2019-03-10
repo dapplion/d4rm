@@ -24,28 +24,21 @@ form JSON example:
 
 ```json
 {
-    "title": "EthParis aftermath",
-    "questions": [
-        {
-            "title": "Is EthParis the best hackaton ever?",
-            "answers": [
-                "Yes",
-                "No"
-            ]
-        },
-        {
-            "title": "Would you come back",
-            "answers": [
-                "Yes",
-                "No",
-                "Once ETH is back at 300$"
-            ]
-        }
-    ],
-    "submit": {
-        "to": "rinkeby",
-        "address": "0x77E91Ab5af418A6154637216d596d75eB8ecf70a"
+  "title": "EthParis aftermath",
+  "questions": [
+    {
+      "title": "Is EthParis the best hackaton ever?",
+      "answers": ["Yes", "No"]
+    },
+    {
+      "title": "Would you come back?",
+      "answers": ["Yes", "No", "Once ETH is back at 300$"]
     }
+  ],
+  "submit": {
+    "to": "rinkeby",
+    "address": "0x77E91Ab5af418A6154637216d596d75eB8ecf70a"
+  }
 }
 ```
 

@@ -1,1 +1,26 @@
-[{"constant":false,"inputs":[{"name":"_answers","type":"bytes"}],"name":"submit","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"user","type":"address"},{"indexed":false,"name":"answers","type":"bytes"}],"name":"Submission","type":"event"}]
+[
+  {
+    "constant": false,
+    "inputs": [{ "name": "_answers", "type": "bytes" }],
+    "name": "submit",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "name": "user", "type": "address" },
+      { "indexed": false, "name": "answers", "type": "bytes" }
+    ],
+    "name": "Submission",
+    "type": "event"
+  }
+]
