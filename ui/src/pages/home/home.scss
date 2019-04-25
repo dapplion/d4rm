@@ -1,0 +1,72 @@
+#home {
+  section {
+    padding: 5rem 1rem;
+  }
+  section:nth-child(even) {
+    background-color: white;
+  }
+
+  .title {
+    font-size: 3rem;
+    line-height: 58px;
+    margin-bottom: 1rem;
+  }
+  .sub-title {
+    font-size: 1.5rem;
+    line-height: 58px;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.15rem;
+    color: #848484;
+  }
+}
+
+.recent-forms {
+  margin-top: 2rem;
+}
+.user-forms {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11em, 1fr));
+  grid-gap: 1.5rem;
+}
+.form-preview {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  .miniature {
+    font-size: 3rem;
+    align-self: center;
+    margin-bottom: 1rem;
+    color: #3f51b5;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+  .formTitle {
+    font-weight: bold;
+  }
+  .formTitle,
+  .time {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 1rem;
+    color: gray;
+    font-size: 0.8rem;
+    svg {
+      font-size: 1.3rem;
+    }
+  }
+  &:hover {
+    .miniature {
+      opacity: 0.8;
+    }
+    .bottom svg {
+      color: #3f51b5;
+    }
+  }
+}

@@ -1,0 +1,161 @@
+:root {
+  --default-spacing: 1rem;
+  --horizontal-spacing: 0.5rem;
+}
+
+// Generic styles
+
+.paper-section {
+  padding: 2rem;
+  margin: 1rem 0;
+}
+
+button .button-svg {
+  margin-right: 0.25rem;
+}
+
+// Target the second div of the material ui <TextFiled> component
+// to remove the underline when it is not hovered
+.option-row-input > div::before {
+  border-bottom-color: transparent;
+}
+
+.option-row > *:not(:last-child),
+.question > .header > *:not(:last-child) {
+  margin-right: var(--horizontal-spacing);
+}
+
+.question svg:not(.circle),
+.option-row:hover > .arrows > svg {
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+}
+.question svg:not(.circle):hover,
+.option-row > .arrows > svg:hover {
+  opacity: 1;
+}
+.question svg.circle {
+  opacity: 0.4;
+}
+
+// General question styles
+
+.question {
+  > div:not(:last-child) {
+    margin-bottom: var(--default-spacing);
+  }
+
+  // Question header
+  > .header {
+    display: flex;
+    align-items: center;
+    *:not(:last-child) {
+      margin-right: var(--horizontal-spacing);
+    }
+  }
+}
+
+// Option row styles
+
+.option-row {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 0.75rem;
+  }
+  > *:not(:last-child) {
+    margin-right: var(--horizontal-spacing);
+  }
+
+  > .arrows > svg {
+    opacity: 0.1;
+  }
+  > .text {
+    flex: auto;
+  }
+
+  // Sizing
+  height: 2rem;
+  > .arrows {
+    width: 3rem;
+  }
+  > .delete {
+    width: 1.5rem;
+  }
+
+  // Add option (special row)
+  &.add-option {
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    > .text:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+
+    /* Add option pseudo button */
+    button {
+      text-transform: none;
+      padding: 0;
+      background-color: transparent;
+    }
+  }
+}
+
+// Add question
+
+.add-question {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+  &:hover {
+    opacity: 1;
+  }
+  svg {
+    margin-right: 0.5rem;
+  }
+}
+
+// Footer buttons
+
+.footer-buttons {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    height: 2.3rem;
+  }
+}
+
+.publish-button {
+  margin-top: 3rem;
+}
+
+// Submit mechanism
+
+.submit-mechanism {
+  margin-top: 3rem;
+
+  .title {
+    font-size: 2rem;
+    color: #444;
+  }
+  p {
+    font-size: 1.15rem;
+    color: #848484;
+  }
+  .select {
+    margin-right: 1rem;
+    width: 9rem;
+  }
+  > button {
+    margin-top: 1rem;
+  }
+}

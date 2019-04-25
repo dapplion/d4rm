@@ -9,4 +9,3 @@ contract FormSubmission {
         emit Submission(msg.sender, _answers);
     }
 }
-
