@@ -5,7 +5,7 @@ import Web3 from "web3";
 import Nav from "components/Nav";
 // Pages
 import Home from "./pages/home/Home";
-import Create from "./pages/create/Create";
+import Create from "./pages/create";
 import Form from "./pages/form/Form";
 
 const web3 = new Web3("https://rinkeby.infura.io");
@@ -27,7 +27,7 @@ class App extends Component {
         <Nav />
         <Switch>
           <Route path={"/"} exact={true} component={Home} />
-          <Route path={"/create"} component={Create} />
+          <Route path={"/create/:publish?"} component={Create} />
           <Route path={"/:hash/:showResults?"} component={Form} />
           <Route render={() => <h1>404 Route not found</h1>} />
         </Switch>

@@ -67,7 +67,8 @@ function Results({ form, submissions }) {
             <div className="text">{text}</div>
             <div className="answers">
               {options.map((option, j) => {
-                const percent = (questionsResultsPercent[i][j] || 0) + "%";
+                const percent =
+                  ((questionsResultsPercent[i] || [])[j] || 0) + "%";
                 return (
                   <React.Fragment key={j}>
                     <div className="option">

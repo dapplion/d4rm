@@ -148,8 +148,11 @@ button .button-svg {
     color: #444;
   }
   p {
-    font-size: 1.15rem;
-    color: #848484;
+    color: #4d4d4d;
+  }
+  .alert {
+    border-left: 0.4rem solid #fb8383;
+    padding-left: 1rem;
   }
   .select {
     margin-right: 1rem;
@@ -157,5 +160,15 @@ button .button-svg {
   }
   > button {
     margin-top: 1rem;
+  }
+}
+
+// At address on smartContract generic case
+.at-address {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  a {
+    color: var(--main-color);
+    text-decoration: none;
   }
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getUserForms, removeUserForm } from "services/userForms";
+import { getUserForms } from "services/userForms";
 import timeAgo from "utils/timeAgo";
 // Components
 import Button from "@material-ui/core/Button";
@@ -7,7 +7,6 @@ import Paper from "@material-ui/core/Paper";
 import Link from "components/Link";
 // Styles
 import FormatListNumbered from "@material-ui/icons/FormatListNumbered";
-import Clear from "@material-ui/icons/Clear";
 import OpenInNew from "@material-ui/icons/OpenInNew";
 import "./home.scss";
 

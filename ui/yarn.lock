@@ -2556,6 +2556,16 @@ ci-info@^1.5.0:
   resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.6.0.tgz#2ca20dbb9ceb32d4524a683303313f0304b1e497"
   integrity sha512-vsGdkwSCDpWmP80ncATX7iea5DWQemg1UgCW5J8tqjU3lYw4FBYuj89J0CTVomA7BEfvSZd84GmHko+MxFQU2A==
 
+cids@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/cids/-/cids-0.6.0.tgz#0de7056a5246a7c7ebf3134eb4d83b3b8b841a06"
+  integrity sha512-34wuIeiBZOuvBwUuYR4XooVuXUQI2PYU9VmgM2eB3xkSmQYRlv2kh/dIbmGiLY2GuONlGR3lLtYdVkx1G9yXUg==
+  dependencies:
+    class-is "^1.1.0"
+    multibase "~0.6.0"
+    multicodec "~0.5.0"
+    multihashes "~0.4.14"
+
 cids@~0.5.4, cids@~0.5.5, cids@~0.5.6:
   version "0.5.8"
   resolved "https://registry.yarnpkg.com/cids/-/cids-0.5.8.tgz#3d5000c3856a2d3c00967b21265aa57142611aa0"
@@ -11670,6 +11680,11 @@ ursa-optional@~0.9.10:
   dependencies:
     bindings "^1.3.0"
     nan "^2.11.1"
+
+use-debounce@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-1.1.3.tgz#08b76fd8cc9b107e0a6d6ee8bb6c5fe97a14732f"
+  integrity sha512-pv/8dgE66/Qfp3eltmChJl3qdTZ+aOUqDSHN+vQQgujMa5gfG8GzPATxS5jEUwv7ajv6iFXrfcSpVykmkAgIAw==
 
 use@^3.1.0:
   version "3.1.1"

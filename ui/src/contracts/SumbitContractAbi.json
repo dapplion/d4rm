@@ -1,7 +1,10 @@
 [
   {
     "constant": false,
-    "inputs": [{ "name": "_answers", "type": "bytes" }],
+    "inputs": [
+      { "name": "surveyId", "type": "bytes32" },
+      { "name": "_answers", "type": "bytes32" }
+    ],
     "name": "submit",
     "outputs": [],
     "payable": false,
@@ -17,8 +20,9 @@
   {
     "anonymous": false,
     "inputs": [
+      { "indexed": true, "name": "surveyId", "type": "bytes32" },
       { "indexed": false, "name": "user", "type": "address" },
-      { "indexed": false, "name": "answers", "type": "bytes" }
+      { "indexed": false, "name": "answers", "type": "bytes32" }
     ],
     "name": "Submission",
     "type": "event"

@@ -45,6 +45,7 @@ function Form({ match }) {
       try {
         setLoading(true);
         const _submissions = await fetchSubmissions({
+          network: form.submit.network,
           address: form.submit.address,
           questions: form.questions
         });
@@ -72,7 +73,7 @@ function Form({ match }) {
         ) : showResults ? (
           <Results {...{ form, submissions }} />
         ) : (
-          <Answer {...{ form }} />
+          <Answer {...{ form, hash }} />
         )}
 
         {form &&
