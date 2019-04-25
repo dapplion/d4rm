@@ -1,34 +1,26 @@
 import Web3 from "web3";
+import { decodeAnswers } from "utils/answersCoder";
 import sumbitContractAbi from "contracts/SumbitContractAbi.json";
+import hashToBytes32 from "utils/hashToBytes32";
+import { getEthProviderUrl } from "utils/getProviderUrl";
 
-const hexCharactersPerAnswer = 1;
+async function fetchSubmissions({ hash, network, address, questions }) {
+  const surveyId = hashToBytes32(hash);
 
-async function fetchSubmissions({ network, address, questions }) {
   // Parse existing answers
-  const web3Local = new Web3(
-    `https://${network}.infura.io/v3/89b12e3b00cf40f5ae26cc72b3284a44`
-  );
+  const providerUrl = getEthProviderUrl(network);
+  const web3Local = new Web3(providerUrl);
   const submitContract = new web3Local.eth.Contract(sumbitContractAbi, address);
   const events = await submitContract.getPastEvents("Submission", {
+    filter: { surveyId },
     fromBlock: "0"
   });
   console.log(`events at submission contract ${network} ${address}`, events);
 
   return events.map(event => {
-    const answers = (event.returnValues.answers || "").replace("0x", "");
-    const parsedAnswers = [];
-    for (let i = 0; i < questions.length; i++) {
-      const stringPos = i * hexCharactersPerAnswer; // 1 hex characters per answer
-      const answerIndex = parseInt(
-        answers.slice(stringPos, stringPos + hexCharactersPerAnswer),
-        16
-      );
-      parsedAnswers.push({
-        title: questions[i].title,
-        answer: questions[i].options[answerIndex],
-        answerIndex
-      });
-    }
+    const answersBytes32 = event.returnValues.answers || "";
+    const parsedAnswers = decodeAnswers(answersBytes32, questions);
+
     return {
       answers: parsedAnswers,
       txHash: event.transactionHash,

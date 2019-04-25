@@ -10,6 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 // Icons
 import fromCamelCase from "utils/fromCamelCase";
 import newTabProps from "utils/newTabProps";
+import { getContractUrl } from "utils/getBlockExplorerUrl";
 
 const submitOptions = [
   {
@@ -132,10 +133,7 @@ function SubmitEditorRoot({ setSubmit, initialSubmit }) {
             {address && (
               <p className="at-address">
                 At address{" "}
-                <a
-                  href={`https://${network}.etherscan.io/address/${address}`}
-                  {...newTabProps}
-                >
+                <a href={getContractUrl(network, address)} {...newTabProps}>
                   {address}
                 </a>
               </p>

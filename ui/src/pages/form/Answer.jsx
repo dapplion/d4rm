@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import submitAnswers from "services/submitAnswers";
 // Components
 import FormDisplay from "./FormDisplay";
 import Button from "@material-ui/core/Button";
 // Utils
 import { areAnswersFulfilled } from "utils/utils";
+import { getContractUrl, getTxUrl } from "utils/getBlockExplorerUrl";
+
+const faucetUrl = {
+  ropsten: "https://faucet.ropsten.be/",
+  kovan: "https://faucet.kovan.network/",
+  rinkeby: "https://faucet.rinkeby.io/",
+  goerli: "https://goerli-faucet.slock.it/"
+};
 
 function Answer({ form, hash }) {
   const { title, description, questions, submit } = form;
+
+  // #### TODO
+  // const [metamaskStatus, setMetamaskStatus] = useState("");
+
+  // useEffect(() => {
+  //   if (window.ethereum) {}
+  // }, []);
 
   const [answers, setAnswers] = useState({});
   const [txHash, setTxHash] = useState("");
@@ -39,9 +54,7 @@ function Answer({ form, hash }) {
         <h5>Success!</h5>
         <p>
           Answers submitted to{" "}
-          <a href={`https://${submit.network}.etherscan.io/tx/${txHash}`}>
-            {submit.network}
-          </a>
+          <a href={getTxUrl(submit.network, txHash)}>{submit.network}</a>
         </p>
       </div>
     );
@@ -67,9 +80,18 @@ function Answer({ form, hash }) {
             </Button>
 
             <p style={{ opacity: 0.5, fontSize: "75%" }}>
-              Submits to {submit.to} at {submit.network} {submit.address}
+              Submits to {submit.to} at {submit.network}{" "}
+              <a href={getContractUrl(submit.network, submit.address)}>
+                {submit.address}
+              </a>
             </p>
-            {error && <h5>Error: {error}</h5>}
+            <p style={{ opacity: 0.5, fontSize: "75%" }}>
+              Need funds? Go to the{" "}
+              <a href={faucetUrl[submit.network]}>{submit.network} faucet</a>.
+              You need ~ 0.000025475 Ether to submit.
+            </p>
+
+            {error && <p style={{ color: "red" }}>Error: {error}</p>}
           </div>
         )}
       </div>

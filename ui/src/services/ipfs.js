@@ -1,6 +1,8 @@
 import ipfsClient from "ipfs-http-client";
+import { getIpfsProviderUrl } from "utils/getProviderUrl";
 
-const ipfs = ipfsClient("ipfs.infura.io", "5001", { protocol: "https" });
+const providerUrl = getIpfsProviderUrl();
+const ipfs = ipfsClient(providerUrl, "5001", { protocol: "https" });
 window.ipfs = ipfs;
 
 async function add(obj) {

@@ -55,7 +55,7 @@ function Home() {
             </Button>
           </Link>
 
-          {userForms.length && (
+          {Boolean(userForms.length) && (
             <div className="recent-forms">
               <div className="sub-title">Recent forms</div>
               <div className="user-forms">

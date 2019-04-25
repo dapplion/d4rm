@@ -1,28 +1,11 @@
 import Web3 from "web3";
 import sumbitContractAbi from "contracts/SumbitContractAbi.json";
-import CID from "cids";
-
-function hashToBytes32(hash) {
-  const cid = new CID(hash);
-  return (
-    "0x" +
-    cid.multihash
-      .slice(2, 64)
-      .toString("hex")
-      .padStart(64, "0")
-  );
-}
+import { encodeAnswers } from "utils/answersCoder";
+import hashToBytes32 from "utils/hashToBytes32";
+import { getEthProviderUrl } from "utils/getProviderUrl";
 
 async function submitAnswers({ answers, submit, hash }) {
   if (!hash) throw Error("hash must be defined");
-
-  const answerIds = Object.values(answers).map(answerIndex => {
-    if (isNaN(answerIndex)) throw Error("Answer index must be a number");
-    if (answerIndex > 15)
-      throw Error("Max number of possible answers for questions is 15");
-    return parseInt(answerIndex).toString(16);
-  });
-  const answerBytes = "0x" + answerIds.join("").padEnd(64, "0");
 
   /**
    * Only one method is supported, via rinkeby
@@ -32,7 +15,7 @@ async function submitAnswers({ answers, submit, hash }) {
 
   const result = await submitToSmartContract({
     surveyId: hashToBytes32(hash),
-    answerBytes,
+    answerBytes: encodeAnswers(answers),
     address: submit.address,
     network: submit.network
   });
@@ -56,7 +39,8 @@ async function submitToSmartContract({
   });
 
   await window.ethereum.enable();
-  const web3 = new Web3(`https://${network}.infura.io`);
+  const providerUrl = getEthProviderUrl(network);
+  const web3 = new Web3(providerUrl);
   // Check addresses
   if (!web3.utils.isAddress(window.ethereum.selectedAddress)) {
     throw Error(
@@ -67,6 +51,14 @@ async function submitToSmartContract({
   }
   if (!web3.utils.isAddress(address)) {
     throw Error(`Submit address is not valid: ${address}`);
+  }
+
+  // Verify that the metamask network is correct
+  const metamaskNetId = window.ethereum.networkVersion; // > "5"
+  const web3NetId = await web3.eth.net.getId().then(String);
+  if (metamaskNetId && web3NetId && metamaskNetId !== web3NetId) {
+    console.log({ metamaskNetId, web3NetId });
+    throw Error(`Please change metamask network to ${network}`);
   }
 
   const submitContract = new web3.eth.Contract(sumbitContractAbi, address);

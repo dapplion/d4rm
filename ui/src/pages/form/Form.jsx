@@ -45,6 +45,7 @@ function Form({ match }) {
       try {
         setLoading(true);
         const _submissions = await fetchSubmissions({
+          hash,
           network: form.submit.network,
           address: form.submit.address,
           questions: form.questions
