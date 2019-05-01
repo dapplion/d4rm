@@ -1,0 +1,36 @@
+[
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "surveyId",
+        "type": "bytes32"
+      },
+      {
+        "name": "answers",
+        "type": "bytes32"
+      },
+      {
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "name": "r",
+        "type": "bytes32"
+      },
+      {
+        "name": "s",
+        "type": "bytes32"
+      },
+      {
+        "name": "v",
+        "type": "uint8"
+      }
+    ],
+    "name": "delegatedSubmit",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

@@ -1,16 +1,12 @@
-import Web3 from "web3";
 import { decodeAnswers } from "utils/answersCoder";
-import sumbitContractAbi from "contracts/SumbitContractAbi.json";
 import hashToBytes32 from "utils/hashToBytes32";
-import { getEthProviderUrl } from "utils/getProviderUrl";
+import { getSubmitContract } from "services/ethereumMethods";
 
 async function fetchSubmissions({ hash, network, address, questions }) {
   const surveyId = hashToBytes32(hash);
 
   // Parse existing answers
-  const providerUrl = getEthProviderUrl(network);
-  const web3Local = new Web3(providerUrl);
-  const submitContract = new web3Local.eth.Contract(sumbitContractAbi, address);
+  const submitContract = getSubmitContract({ address, network });
   const events = await submitContract.getPastEvents("Submission", {
     filter: { surveyId },
     fromBlock: "0"

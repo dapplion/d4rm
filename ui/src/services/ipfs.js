@@ -1,5 +1,5 @@
 import ipfsClient from "ipfs-http-client";
-import { getIpfsProviderUrl } from "utils/getProviderUrl";
+import { getIpfsProviderUrl } from "utils/getUrlProvider";
 
 const providerUrl = getIpfsProviderUrl();
 const ipfs = ipfsClient(providerUrl, "5001", { protocol: "https" });

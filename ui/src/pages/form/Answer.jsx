@@ -5,7 +5,10 @@ import FormDisplay from "./FormDisplay";
 import Button from "@material-ui/core/Button";
 // Utils
 import { areAnswersFulfilled } from "utils/utils";
-import { getContractUrl, getTxUrl } from "utils/getBlockExplorerUrl";
+import { getContractUrl, getTxUrl } from "utils/getUrlBlockExplorer";
+
+// ##### DEV
+import "services/signIn";
 
 const faucetUrl = {
   ropsten: "https://faucet.ropsten.be/",
@@ -13,6 +16,11 @@ const faucetUrl = {
   rinkeby: "https://faucet.rinkeby.io/",
   goerli: "https://goerli-faucet.slock.it/"
 };
+
+function getAccountBalance(account, network) {
+  const params = encodeURI(JSON.stringify([account, "latest"]));
+  const url = `https://api.infura.io/v1/jsonrpc/${network}/eth_getBalance?params=${params}`;
+}
 
 function Answer({ form, hash }) {
   const { title, description, questions, submit } = form;
@@ -40,7 +48,7 @@ function Answer({ form, hash }) {
       setTxHash(submissionHash);
     } catch (e) {
       setError(e.message);
-      console.error(`Èrror onSubmit answers: ${e.message}`);
+      console.error(`Èrror onSubmit answers: ${e.stack}`);
     } finally {
       setSubmitting(false);
     }

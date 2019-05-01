@@ -9,6 +9,8 @@ const maxIndex = 16 ** hexCharactersPerAnswer - 1;
  * @returns {string} bytes32: 0x31000000000000000000...
  */
 export function encodeAnswers(answers) {
+  if (!answers) throw Error("answers must be defined");
+
   const answerIds = Object.values(answers).map(answerIndex => {
     if (isNaN(answerIndex)) throw Error("Answer index must be a number");
     if (answerIndex > maxIndex)

@@ -5,6 +5,8 @@ import CID from "cids";
  * @returns {string} bytes32: "0x3011ab30911ba..."
  */
 export default function hashToBytes32(hash) {
+  if (!hash) throw Error("hash must be defined");
+
   const cid = new CID(hash);
   return (
     "0x" +

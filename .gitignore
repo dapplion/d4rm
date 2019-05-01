@@ -6,4 +6,7 @@ ui/build/
 ui/build
 .env
 
+# Critical sensitive data
+ethereum-backend/.privateKey
+
 .DS_Store

@@ -1,0 +1,24 @@
+#sign-in {
+  padding: 1rem;
+
+  .title {
+    text-align: center;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+  }
+  .content > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+  .logo {
+    width: 10rem;
+  }
+  .error {
+    text-align: center;
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    color: rgb(97, 97, 97);
+  }
+}

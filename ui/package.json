@@ -7,6 +7,8 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "cids": "^0.6.0",
+    "ethereumjs-abi": "^0.6.7",
+    "ethereumjs-util": "^6.1.0",
     "ipfs-http-client": "^29.1.1",
     "javascript-time-ago": "^2.0.1",
     "jquery": "^3.3.1",

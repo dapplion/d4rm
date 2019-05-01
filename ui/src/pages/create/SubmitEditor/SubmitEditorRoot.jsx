@@ -10,7 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 // Icons
 import fromCamelCase from "utils/fromCamelCase";
 import newTabProps from "utils/newTabProps";
-import { getContractUrl } from "utils/getBlockExplorerUrl";
+import { getContractUrl } from "utils/getUrlBlockExplorer";
 
 const submitOptions = [
   {
