@@ -4,8 +4,6 @@ const DelegatedPublicFormSubmission = artifacts.require(
 );
 
 module.exports = function(deployer) {
-  deployer.then(async () => {
-    await deployer.deploy(PublicFormSubmission);
-    await deployer.deploy(DelegatedPublicFormSubmission);
-  });
+  deployer.deploy(PublicFormSubmission);
+  deployer.deploy(DelegatedPublicFormSubmission);
 };

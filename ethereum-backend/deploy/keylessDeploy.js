@@ -1,25 +1,15 @@
-const EthTx = require("ethereumjs-tx");
-const ethUtils = require("ethereumjs-util");
+const fs = require("fs");
 const rawTransaction = require("./rawTransaction");
 const waitForTx = require("./waitForTx");
+const generateDeployTx = require("./generateDeployTx");
+const { getEtherscanUrl } = require("./etherscanData");
 
-const toHex = address => "0x" + address.toString("hex");
 const toBN = web3.utils.toBN;
 
-generateDeployTx = gasLimit => {
-  if (gasLimit) rawTransaction.gasLimit = gasLimit;
-  const tx = new EthTx(rawTransaction);
-  const deployerAddress = toHex(tx.getSenderAddress());
-  const contractAddress = toHex(ethUtils.generateAddress(deployerAddress, 0));
-  const rawTx = toHex(tx.serialize());
-  return {
-    sender: ethUtils.toChecksumAddress(deployerAddress),
-    contractAddr: ethUtils.toChecksumAddress(contractAddress),
-    rawTx
-  };
-};
+async function deploy(contractId) {
+  const ContractInstance = artifacts.require(contractId);
+  const network_id = ContractInstance.network_id;
 
-async function deploy() {
   const gasEstimate = await web3.eth.estimateGas({
     data: rawTransaction.data
   });
@@ -57,16 +47,32 @@ async function deploy() {
   console.log(`Deploying contract ${contractAddr}...`);
   const deployTx = await web3.eth.sendSignedTransaction(rawTx);
   await waitForTx(deployTx.transactionHash, web3);
+
+  // Write truffle artifacts
+  const artifactsJson = ContractInstance._json;
+  artifactsJson.networks[String(network_id)] = {
+    events: {},
+    links: {},
+    address: contractAddr,
+    transactionHash: fundTx.transactionHash
+  };
+  fs.writeFileSync(
+    `build/contracts/${contractId}.json`,
+    JSON.stringify(artifactsJson, null, 2)
+  );
+
+  // Log results
   console.log(`Successfully deployed contract 
     address: ${contractAddr}
     txHash: ${fundTx.transactionHash}
+    link: ${getEtherscanUrl(network_id)}/tx/${fundTx.transactionHash}
   `);
 
   return contractAddr;
 }
 
 module.exports = function(callback) {
-  deploy()
+  deploy("DelegatedPublicFormSubmission")
     .then(res => callback(null, res))
     .catch(err => callback(err));
 };

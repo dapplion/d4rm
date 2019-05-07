@@ -2,14 +2,6 @@
   "contractName": "PublicFormSubmission",
   "abi": [
     {
-      "inputs": [],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "constructor",
-      "signature": "constructor"
-    },
-    {
-      "anonymous": false,
       "inputs": [
         {
           "indexed": true,
@@ -27,9 +19,39 @@
           "type": "bytes32"
         }
       ],
-      "name": "Submission",
+      "payable": false,
+      "stateMutability": "nonpayable",
       "type": "event",
-      "signature": "0x7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb"
+      "signature": "constructor",
+      "anonymous": false,
+      "name": "Submission"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "surveyId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "_answers",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "answers",
+          "type": "bytes32"
+        }
+      ],
+      "name": "submit",
+      "type": "function",
+      "signature": "0x7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb",
+      "constant": false,
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable"
     },
     {
       "constant": false,
@@ -51,21 +73,21 @@
       "signature": "0xd26ff86e"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.3+commit.10d17f24\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"surveyId\",\"type\":\"bytes32\"},{\"name\":\"_answers\",\"type\":\"bytes32\"}],\"name\":\"submit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"surveyId\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"answers\",\"type\":\"bytes32\"}],\"name\":\"Submission\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{\"submit(bytes32,bytes32)\":{\"details\":\"Answers are encoded as a multichoice each hex character of the bytes32 array 0x13000000... Means the second option of the first question and the fourth of the second. \"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/lion/Documents/d4rm/ethereum-backend/contracts/PublicFormSubmission.sol\":\"PublicFormSubmission\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/lion/Documents/d4rm/ethereum-backend/contracts/PublicFormSubmission.sol\":{\"keccak256\":\"0x7d95719fe15a9f7c217739bd2e7234f813b0ab34d616fc5178baa11d6fadaf70\",\"urls\":[\"bzzr://619eb7ce05fda2947c63c1881473b95d1b751d30999d3f8773d8bdb25baad1b9\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b5060d58061001e6000396000f3fe6080604052348015600f57600080fd5b50600436106044577c01000000000000000000000000000000000000000000000000000000006000350463d26ff86e81146049575b600080fd5b606960048036036040811015605d57600080fd5b5080359060200135606b565b005b6040805133815260208101839052815184927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505056fea165627a7a72305820024cc0330d900cf0b632410a7af6dc6056ef842912ea8424d97e0f136f2785140029",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b50600436106044577c01000000000000000000000000000000000000000000000000000000006000350463d26ff86e81146049575b600080fd5b606960048036036040811015605d57600080fd5b5080359060200135606b565b005b6040805133815260208101839052815184927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505056fea165627a7a72305820024cc0330d900cf0b632410a7af6dc6056ef842912ea8424d97e0f136f2785140029",
-  "sourceMap": "33:528:2:-;;;218:23;8:9:-1;5:2;;;30:1;27;20:12;5:2;218:23:2;33:528;;;;;;",
-  "deployedSourceMap": "33:528:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;33:528:2;;;;;;;;;;;;;;;;;;;436:123;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;436:123:2;;;;;;;:::i;:::-;;;510:42;;;531:10;510:42;;;;;;;;;;521:8;;510:42;;;;;;;;436:123;;:::o",
-  "source": "pragma solidity >=0.4.22 <0.6.0;\ncontract PublicFormSubmission {\n    \n    /// @dev surveyId is the hash of the file in IPFS multihash\n    event Submission(bytes32 indexed surveyId, address user, bytes32 answers);\n\n    constructor() public {}\n\n    /// @dev Answers are encoded as a multichoice each hex character of the bytes32 array\n    /// 0x13000000... Means the second option of the first question and the fourth of the second. \n    function submit(bytes32 surveyId, bytes32 _answers) public {\n        emit Submission(surveyId, msg.sender, _answers);\n    }\n}\n",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.3+commit.10d17f24\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"surveyId\",\"type\":\"bytes32\"},{\"name\":\"_answers\",\"type\":\"bytes32\"}],\"name\":\"submit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"surveyId\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"answers\",\"type\":\"bytes32\"}],\"name\":\"Submission\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{\"submit(bytes32,bytes32)\":{\"details\":\"Answers are encoded as a multichoice each hex character of the bytes32 array 0x13000000... Means the second option of the first question and the fourth of the second.\"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/lion/Documents/d4rm/ethereum-backend/contracts/PublicFormSubmission.sol\":\"PublicFormSubmission\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/lion/Documents/d4rm/ethereum-backend/contracts/PublicFormSubmission.sol\":{\"keccak256\":\"0xfc6dcb9f1bfc1ff601ae997bc62f72df0c5d1f63ab5fc5104236cb3a5b051df6\",\"urls\":[\"bzzr://badcd95bfc9c3f41d45ad3ff1858e23ebf5166e75c23f2b667a48b17bb9b07fc\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060d58061001e6000396000f3fe6080604052348015600f57600080fd5b50600436106044577c01000000000000000000000000000000000000000000000000000000006000350463d26ff86e81146049575b600080fd5b606960048036036040811015605d57600080fd5b5080359060200135606b565b005b6040805133815260208101839052815184927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505056fea165627a7a72305820320042be4d3ed8b6a600b83063231a85ee831dbcadf4a166eceb1e34ae4a9a6f0029",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b50600436106044577c01000000000000000000000000000000000000000000000000000000006000350463d26ff86e81146049575b600080fd5b606960048036036040811015605d57600080fd5b5080359060200135606b565b005b6040805133815260208101839052815184927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505056fea165627a7a72305820320042be4d3ed8b6a600b83063231a85ee831dbcadf4a166eceb1e34ae4a9a6f0029",
+  "sourceMap": "33:493:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;33:493:2;;;;;;;",
+  "deployedSourceMap": "33:493:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;33:493:2;;;;;;;;;;;;;;;;;;;401:123;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;401:123:2;;;;;;;:::i;:::-;;;475:42;;;496:10;475:42;;;;;;;;;;486:8;;475:42;;;;;;;;401:123;;:::o",
+  "source": "pragma solidity >=0.4.22 <0.6.0;\ncontract PublicFormSubmission {\n    /// @dev surveyId is the hash of the file in IPFS multihash\n    event Submission(bytes32 indexed surveyId, address user, bytes32 answers);\n\n    /// @dev Answers are encoded as a multichoice each hex character of the bytes32 array\n    /// 0x13000000... Means the second option of the first question and the fourth of the second.\n    function submit(bytes32 surveyId, bytes32 _answers) public {\n        emit Submission(surveyId, msg.sender, _answers);\n    }\n}",
   "sourcePath": "/home/lion/Documents/d4rm/ethereum-backend/contracts/PublicFormSubmission.sol",
   "ast": {
     "absolutePath": "/home/lion/Documents/d4rm/ethereum-backend/contracts/PublicFormSubmission.sol",
     "exportedSymbols": {
       "PublicFormSubmission": [
-        149
+        145
       ]
     },
-    "id": 150,
+    "id": 146,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -88,9 +110,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 149,
+        "id": 145,
         "linearizedBaseContracts": [
-          149
+          145
         ],
         "name": "PublicFormSubmission",
         "nodeType": "ContractDefinition",
@@ -112,7 +134,7 @@
                   "name": "surveyId",
                   "nodeType": "VariableDeclaration",
                   "scope": 129,
-                  "src": "155:24:2",
+                  "src": "150:24:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -123,7 +145,7 @@
                     "id": 122,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "155:7:2",
+                    "src": "150:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -139,7 +161,7 @@
                   "name": "user",
                   "nodeType": "VariableDeclaration",
                   "scope": 129,
-                  "src": "181:12:2",
+                  "src": "176:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -150,7 +172,7 @@
                     "id": 124,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "181:7:2",
+                    "src": "176:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -167,7 +189,7 @@
                   "name": "answers",
                   "nodeType": "VariableDeclaration",
                   "scope": 129,
-                  "src": "195:15:2",
+                  "src": "190:15:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -178,7 +200,7 @@
                     "id": 126,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "195:7:2",
+                    "src": "190:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -188,38 +210,196 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "154:57:2"
+              "src": "149:57:2"
             },
-            "src": "138:74:2"
+            "src": "133:74:2"
           },
           {
             "body": {
-              "id": 132,
+              "id": 143,
               "nodeType": "Block",
-              "src": "239:2:2",
-              "statements": []
+              "src": "460:64:2",
+              "statements": [
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 137,
+                        "name": "surveyId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 131,
+                        "src": "486:8:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 138,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 160,
+                          "src": "496:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 139,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "496:10:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 140,
+                        "name": "_answers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 133,
+                        "src": "508:8:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 136,
+                      "name": "Submission",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 129,
+                      "src": "475:10:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_bytes32_$_t_address_$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32,address,bytes32)"
+                      }
+                    },
+                    "id": 141,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "475:42:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 142,
+                  "nodeType": "EmitStatement",
+                  "src": "470:47:2"
+                }
+              ]
             },
-            "documentation": null,
-            "id": 133,
+            "documentation": "@dev Answers are encoded as a multichoice each hex character of the bytes32 array\n 0x13000000... Means the second option of the first question and the fourth of the second.",
+            "id": 144,
             "implemented": true,
-            "kind": "constructor",
+            "kind": "function",
             "modifiers": [],
-            "name": "",
+            "name": "submit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 130,
+              "id": 134,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "229:2:2"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 131,
+                  "name": "surveyId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 144,
+                  "src": "417:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 130,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "417:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 133,
+                  "name": "_answers",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 144,
+                  "src": "435:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 132,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "435:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "416:36:2"
             },
             "returnParameters": {
-              "id": 131,
+              "id": 135,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "239:0:2"
+              "src": "460:0:2"
             },
-            "scope": 149,
-            "src": "218:23:2",
+            "scope": 145,
+            "src": "401:123:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -415,20 +595,20 @@
             "visibility": "public"
           }
         ],
-        "scope": 150,
-        "src": "33:528:2"
+        "scope": 146,
+        "src": "33:493:2"
       }
     ],
-    "src": "0:562:2"
+    "src": "0:526:2"
   },
   "legacyAST": {
     "absolutePath": "/home/lion/Documents/d4rm/ethereum-backend/contracts/PublicFormSubmission.sol",
     "exportedSymbols": {
       "PublicFormSubmission": [
-        149
+        145
       ]
     },
-    "id": 150,
+    "id": 146,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -451,9 +631,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 149,
+        "id": 145,
         "linearizedBaseContracts": [
-          149
+          145
         ],
         "name": "PublicFormSubmission",
         "nodeType": "ContractDefinition",
@@ -475,7 +655,7 @@
                   "name": "surveyId",
                   "nodeType": "VariableDeclaration",
                   "scope": 129,
-                  "src": "155:24:2",
+                  "src": "150:24:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -486,7 +666,7 @@
                     "id": 122,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "155:7:2",
+                    "src": "150:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -502,7 +682,7 @@
                   "name": "user",
                   "nodeType": "VariableDeclaration",
                   "scope": 129,
-                  "src": "181:12:2",
+                  "src": "176:12:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -513,7 +693,7 @@
                     "id": 124,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "181:7:2",
+                    "src": "176:7:2",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -530,7 +710,7 @@
                   "name": "answers",
                   "nodeType": "VariableDeclaration",
                   "scope": 129,
-                  "src": "195:15:2",
+                  "src": "190:15:2",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -541,7 +721,7 @@
                     "id": 126,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "195:7:2",
+                    "src": "190:7:2",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -551,38 +731,196 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "154:57:2"
+              "src": "149:57:2"
             },
-            "src": "138:74:2"
+            "src": "133:74:2"
           },
           {
             "body": {
-              "id": 132,
+              "id": 143,
               "nodeType": "Block",
-              "src": "239:2:2",
-              "statements": []
+              "src": "460:64:2",
+              "statements": [
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 137,
+                        "name": "surveyId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 131,
+                        "src": "486:8:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 138,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 160,
+                          "src": "496:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 139,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "496:10:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 140,
+                        "name": "_answers",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 133,
+                        "src": "508:8:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      ],
+                      "id": 136,
+                      "name": "Submission",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 129,
+                      "src": "475:10:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_bytes32_$_t_address_$_t_bytes32_$returns$__$",
+                        "typeString": "function (bytes32,address,bytes32)"
+                      }
+                    },
+                    "id": 141,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "475:42:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 142,
+                  "nodeType": "EmitStatement",
+                  "src": "470:47:2"
+                }
+              ]
             },
-            "documentation": null,
-            "id": 133,
+            "documentation": "@dev Answers are encoded as a multichoice each hex character of the bytes32 array\n 0x13000000... Means the second option of the first question and the fourth of the second.",
+            "id": 144,
             "implemented": true,
-            "kind": "constructor",
+            "kind": "function",
             "modifiers": [],
-            "name": "",
+            "name": "submit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 130,
+              "id": 134,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "229:2:2"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 131,
+                  "name": "surveyId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 144,
+                  "src": "417:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 130,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "417:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 133,
+                  "name": "_answers",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 144,
+                  "src": "435:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 132,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "435:7:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "416:36:2"
             },
             "returnParameters": {
-              "id": 131,
+              "id": 135,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "239:0:2"
+              "src": "460:0:2"
             },
-            "scope": 149,
-            "src": "218:23:2",
+            "scope": 145,
+            "src": "401:123:2",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -778,11 +1116,11 @@
             "visibility": "public"
           }
         ],
-        "scope": 150,
-        "src": "33:528:2"
+        "scope": 146,
+        "src": "33:493:2"
       }
     ],
-    "src": "0:562:2"
+    "src": "0:526:2"
   },
   "compiler": {
     "name": "solc",
@@ -792,16 +1130,16 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xB196f0D6067F1c0e3b3564f9C21c1813d55cFA6F",
-      "transactionHash": "0xc512e1bb9179ac2e96f079de5b5c3dcdc2741eabfd8231484950ce79c54cc206"
+      "address": "0x31465F8dF9eCd66729EA5903088Ac977a7Eb2150",
+      "transactionHash": "0x5ee2d6664c26aac0f4b23a97008ca7ae985208d73d2be6c67b20219fcdfc455c"
     }
   },
   "schemaVersion": "3.0.8",
-  "updatedAt": "2019-05-01T09:01:39.211Z",
+  "updatedAt": "2019-05-07T12:13:49.384Z",
   "devdoc": {
     "methods": {
       "submit(bytes32,bytes32)": {
-        "details": "Answers are encoded as a multichoice each hex character of the bytes32 array 0x13000000... Means the second option of the first question and the fourth of the second. "
+        "details": "Answers are encoded as a multichoice each hex character of the bytes32 array 0x13000000... Means the second option of the first question and the fourth of the second."
       }
     }
   },

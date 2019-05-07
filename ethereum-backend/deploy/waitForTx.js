@@ -1,4 +1,4 @@
-const pause = ms => new Promise(r => setTimeout(r, ms));
+const pause = require("./pause");
 
 async function waitForTx(txHash, web3, interval = 1000) {
   while (true) {

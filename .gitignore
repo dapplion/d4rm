@@ -1,3 +1,4 @@
+# UI
 node_modules/
 node_modules
 ui/node_modules/
@@ -6,7 +7,9 @@ ui/build/
 ui/build
 .env
 
-# Critical sensitive data
+# Ethereum backend
+ethereum-backend/build
+## Critical sensitive data
 ethereum-backend/.privateKey
 
 .DS_Store

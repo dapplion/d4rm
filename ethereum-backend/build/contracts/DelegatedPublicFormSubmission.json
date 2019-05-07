@@ -79,12 +79,12 @@
       "signature": "0x7125803f"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.3+commit.10d17f24\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"surveyId\",\"type\":\"bytes32\"},{\"name\":\"answers\",\"type\":\"bytes32\"},{\"name\":\"user\",\"type\":\"address\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"},{\"name\":\"v\",\"type\":\"uint8\"}],\"name\":\"delegatedSubmit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"surveyId\",\"type\":\"bytes32\"},{\"name\":\"_answers\",\"type\":\"bytes32\"}],\"name\":\"submit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"surveyId\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"answers\",\"type\":\"bytes32\"}],\"name\":\"Submission\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{\"delegatedSubmit(bytes32,bytes32,address,bytes32,bytes32,uint8)\":{\"details\":\"Allow users with no ETH to participate in the survey The user parameter is not necessary but ensures correct submissions The Metamask signing scheme is changing quick and there's risk of submissions producing wrong signer addressesThe surveyId is the content hash of the survey IPFS has which contains this contract's address and the network ID. Therefore the surveyId prevents reusing this signature in other networks or contractsThe front-end will filter by equal submissions, so with on a replay  attack, additional submissions will be ignored\"},\"submit(bytes32,bytes32)\":{\"details\":\"Answers are encoded as a multichoice each hex character of the bytes32 array 0x13000000... Means the second option of the first question and the fourth of the second. \"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/lion/Documents/d4rm/ethereum-backend/contracts/DelegatedPublicFormSubmission.sol\":\"DelegatedPublicFormSubmission\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/lion/Documents/d4rm/ethereum-backend/contracts/DelegatedPublicFormSubmission.sol\":{\"keccak256\":\"0x5f20ff2f7f210fbf25236f77ebd3d466b01924bfb73915536b6e92da0469dbac\",\"urls\":[\"bzzr://e35acb1b55226ac8a7e52264478ed78ad78f9ba77a196e8cf5e4e3b300e51d7f\"]},\"/home/lion/Documents/d4rm/ethereum-backend/contracts/PublicFormSubmission.sol\":{\"keccak256\":\"0x7d95719fe15a9f7c217739bd2e7234f813b0ab34d616fc5178baa11d6fadaf70\",\"urls\":[\"bzzr://619eb7ce05fda2947c63c1881473b95d1b751d30999d3f8773d8bdb25baad1b9\"]}},\"version\":1}",
-  "bytecode": "0x6080604052610295806100136000396000f3fe608060405234801561001057600080fd5b5060043610610052577c010000000000000000000000000000000000000000000000000000000060003504637125803f8114610057578063d26ff86e146100ad575b600080fd5b6100ab600480360360c081101561006d57600080fd5b50803590602081013590604081013573ffffffffffffffffffffffffffffffffffffffff169060608101359060808101359060a0013560ff166100d0565b005b6100ab600480360360408110156100c357600080fd5b508035906020013561022b565b6040805160208082018990528183018890528251808303840181526060830184528051908201207fb6a5021c7e19977fdd997afd3c98f64fd1c39faa37ce5d847d7ae2483519c5f46080840181905260a0808501929092528451808503909201825260c0840180865282519284019290922060009283905260e0850180875281905260ff8716610100860152610120850189905261014085018890529451909493919260019261016080820193601f1981019281900390910190855afa15801561019e573d6000803e3d6000fd5b5050604051601f19015191505073ffffffffffffffffffffffffffffffffffffffff808216908816146101d057600080fd5b6040805173ffffffffffffffffffffffffffffffffffffffff83168152602081018a905281518b927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505050505050505050565b6040805133815260208101839052815184927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505056fea165627a7a72305820428dd24e54acd0813fdfb19caa0c0005d41e440b7ed3cb048d83ce43870258500029",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b5060043610610052577c010000000000000000000000000000000000000000000000000000000060003504637125803f8114610057578063d26ff86e146100ad575b600080fd5b6100ab600480360360c081101561006d57600080fd5b50803590602081013590604081013573ffffffffffffffffffffffffffffffffffffffff169060608101359060808101359060a0013560ff166100d0565b005b6100ab600480360360408110156100c357600080fd5b508035906020013561022b565b6040805160208082018990528183018890528251808303840181526060830184528051908201207fb6a5021c7e19977fdd997afd3c98f64fd1c39faa37ce5d847d7ae2483519c5f46080840181905260a0808501929092528451808503909201825260c0840180865282519284019290922060009283905260e0850180875281905260ff8716610100860152610120850189905261014085018890529451909493919260019261016080820193601f1981019281900390910190855afa15801561019e573d6000803e3d6000fd5b5050604051601f19015191505073ffffffffffffffffffffffffffffffffffffffff808216908816146101d057600080fd5b6040805173ffffffffffffffffffffffffffffffffffffffff83168152602081018a905281518b927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505050505050505050565b6040805133815260208101839052815184927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505056fea165627a7a72305820428dd24e54acd0813fdfb19caa0c0005d41e440b7ed3cb048d83ce43870258500029",
-  "sourceMap": "72:1422:0:-;;;;;;;;;",
-  "deployedSourceMap": "72:1422:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;72:1422:0;;;;;;;;;;;;;;;;;;;;;;;;777:715;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;-1:-1;777:715:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;436:123:2;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;436:123:2;;;;;;;:::i;777:715:0:-;1315:29;;;;;;;;;;;;;;;;;;26:21:-1;;;22:32;;6:49;;1315:29:0;;;;;1305:40;;;;;;1157:66;1260:95;;;;;;;;;;;;;;;;26:21:-1;;;22:32;;;6:49;;1260:95:0;;;;;;1250:106;;;;;;;;;1136:18;1378:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1157:66;;1250:106;1136:18;;:87;;1378:25;;;;;-1:-1:-1;;1378:25:0;;;;;;;;;;1136:87;1378:25;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;-1:-1;;1378:25:0;;-1:-1:-1;;1378:25:0;;;-1:-1:-1;;1421:14:0;;;;;;;;1413:23;;;;;;1451:37;;;;;;;;;;;;;;;;1462:8;;1451:37;;;;;;;;777:715;;;;;;;;;:::o;436:123:2:-;510:42;;;531:10;510:42;;;;;;;;;;521:8;;510:42;;;;;;;;436:123;;:::o",
-  "source": "pragma solidity >=0.4.22 <0.6.0;\n\nimport \"./PublicFormSubmission.sol\";\n\ncontract DelegatedPublicFormSubmission is PublicFormSubmission {\n    /// @dev Allow users with no ETH to participate in the survey\n    /// The user parameter is not necessary but ensures correct submissions\n    /// The Metamask signing scheme is changing quick and there's risk of\n    /// submissions producing wrong signer addresses\n    /// @dev The surveyId is the content hash of the survey IPFS has\n    /// which contains this contract's address and the network ID. Therefore\n    /// the surveyId prevents reusing this signature in other networks or contracts\n    /// @dev The front-end will filter by equal submissions, so with on a replay \n    /// attack, additional submissions will be ignored\n    function delegatedSubmit(\n        bytes32 surveyId,\n        bytes32 answers,\n        address user,\n        bytes32 r, \n        bytes32 s, \n        uint8 v\n    ) public {\n        /// @dev Pre-hashed value to save hash\n        /// [ \"bytes32 Survey ID\", \"bytes32 Answers\" ]\n        /// 0xb6a5021c7e19977fdd997afd3c98f64fd1c39faa37ce5d847d7ae2483519c5f4\n        bytes32 schemaHash = 0xb6a5021c7e19977fdd997afd3c98f64fd1c39faa37ce5d847d7ae2483519c5f4;\n\n        bytes32 _hash = keccak256(abi.encode(\n            schemaHash,\n\t        keccak256(abi.encode(surveyId, answers))\n        ));\n\n\t\taddress signer = ecrecover(_hash, v, r, s);\n        require(signer == user);\n        emit Submission(surveyId, signer, answers);\n\t}\n}\n",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.3+commit.10d17f24\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"surveyId\",\"type\":\"bytes32\"},{\"name\":\"answers\",\"type\":\"bytes32\"},{\"name\":\"user\",\"type\":\"address\"},{\"name\":\"r\",\"type\":\"bytes32\"},{\"name\":\"s\",\"type\":\"bytes32\"},{\"name\":\"v\",\"type\":\"uint8\"}],\"name\":\"delegatedSubmit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"surveyId\",\"type\":\"bytes32\"},{\"name\":\"_answers\",\"type\":\"bytes32\"}],\"name\":\"submit\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"name\":\"surveyId\",\"type\":\"bytes32\"},{\"indexed\":false,\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"name\":\"answers\",\"type\":\"bytes32\"}],\"name\":\"Submission\",\"type\":\"event\"}],\"devdoc\":{\"methods\":{\"delegatedSubmit(bytes32,bytes32,address,bytes32,bytes32,uint8)\":{\"details\":\"Allow users with no ETH to participate in the survey The user parameter is not necessary but ensures correct submissions The Metamask signing scheme is changing quick and there's risk of submissions producing wrong signer addressesThe surveyId is the content hash of the survey IPFS has which contains this contract's address and the network ID. Therefore the surveyId prevents reusing this signature in other networks or contractsThe front-end will filter by equal submissions, so with on a replay attack, additional submissions will be ignored\"},\"submit(bytes32,bytes32)\":{\"details\":\"Answers are encoded as a multichoice each hex character of the bytes32 array 0x13000000... Means the second option of the first question and the fourth of the second.\"}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/home/lion/Documents/d4rm/ethereum-backend/contracts/DelegatedPublicFormSubmission.sol\":\"DelegatedPublicFormSubmission\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/lion/Documents/d4rm/ethereum-backend/contracts/DelegatedPublicFormSubmission.sol\":{\"keccak256\":\"0xeb6260ccaaec87a8cbd9c5a1ef9b0c3eb5bcdd9cd7c066a35959662457bcbd51\",\"urls\":[\"bzzr://334efbe1cf416e8fef6bb3734a9af7b852cbf750ea225e9609240148b5ca416e\"]},\"/home/lion/Documents/d4rm/ethereum-backend/contracts/PublicFormSubmission.sol\":{\"keccak256\":\"0xfc6dcb9f1bfc1ff601ae997bc62f72df0c5d1f63ab5fc5104236cb3a5b051df6\",\"urls\":[\"bzzr://badcd95bfc9c3f41d45ad3ff1858e23ebf5166e75c23f2b667a48b17bb9b07fc\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610295806100206000396000f3fe608060405234801561001057600080fd5b5060043610610052577c010000000000000000000000000000000000000000000000000000000060003504637125803f8114610057578063d26ff86e146100ad575b600080fd5b6100ab600480360360c081101561006d57600080fd5b50803590602081013590604081013573ffffffffffffffffffffffffffffffffffffffff169060608101359060808101359060a0013560ff166100d0565b005b6100ab600480360360408110156100c357600080fd5b508035906020013561022b565b6040805160208082018990528183018890528251808303840181526060830184528051908201207fb6a5021c7e19977fdd997afd3c98f64fd1c39faa37ce5d847d7ae2483519c5f46080840181905260a0808501929092528451808503909201825260c0840180865282519284019290922060009283905260e0850180875281905260ff8716610100860152610120850189905261014085018890529451909493919260019261016080820193601f1981019281900390910190855afa15801561019e573d6000803e3d6000fd5b5050604051601f19015191505073ffffffffffffffffffffffffffffffffffffffff808216908816146101d057600080fd5b6040805173ffffffffffffffffffffffffffffffffffffffff83168152602081018a905281518b927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505050505050505050565b6040805133815260208101839052815184927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505056fea165627a7a7230582021cdb9a01c4e5570310533e2e6c8fdcd24389793b39b629989d1d87a108a951c0029",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b5060043610610052577c010000000000000000000000000000000000000000000000000000000060003504637125803f8114610057578063d26ff86e146100ad575b600080fd5b6100ab600480360360c081101561006d57600080fd5b50803590602081013590604081013573ffffffffffffffffffffffffffffffffffffffff169060608101359060808101359060a0013560ff166100d0565b005b6100ab600480360360408110156100c357600080fd5b508035906020013561022b565b6040805160208082018990528183018890528251808303840181526060830184528051908201207fb6a5021c7e19977fdd997afd3c98f64fd1c39faa37ce5d847d7ae2483519c5f46080840181905260a0808501929092528451808503909201825260c0840180865282519284019290922060009283905260e0850180875281905260ff8716610100860152610120850189905261014085018890529451909493919260019261016080820193601f1981019281900390910190855afa15801561019e573d6000803e3d6000fd5b5050604051601f19015191505073ffffffffffffffffffffffffffffffffffffffff808216908816146101d057600080fd5b6040805173ffffffffffffffffffffffffffffffffffffffff83168152602081018a905281518b927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505050505050505050565b6040805133815260208101839052815184927f7d7b40b1a77897a6d2400c6937e4447f51cd07be5193d885c841349d4177c6eb928290030190a2505056fea165627a7a7230582021cdb9a01c4e5570310533e2e6c8fdcd24389793b39b629989d1d87a108a951c0029",
+  "sourceMap": "70:1419:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;70:1419:0;;;;;;;",
+  "deployedSourceMap": "70:1419:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;70:1419:0;;;;;;;;;;;;;;;;;;;;;;;;774:713;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;-1:-1;774:713:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;401:123:2;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;401:123:2;;;;;;;:::i;774:713:0:-;1310:29;;;;;;;;;;;;;;;;;;26:21:-1;;;22:32;;6:49;;1310:29:0;;;;;1300:40;;;;;;1152:66;1255:95;;;;;;;;;;;;;;;;26:21:-1;;;22:32;;;6:49;;1255:95:0;;;;;;1245:106;;;;;;;;;1131:18;1373:25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1152:66;;1245:106;1131:18;;:87;;1373:25;;;;;-1:-1:-1;;1373:25:0;;;;;;;;;;1131:87;1373:25;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;-1:-1;;1373:25:0;;-1:-1:-1;;1373:25:0;;;-1:-1:-1;;1416:14:0;;;;;;;;1408:23;;;;;;1446:37;;;;;;;;;;;;;;;;1457:8;;1446:37;;;;;;;;774:713;;;;;;;;;:::o;401:123:2:-;475:42;;;496:10;475:42;;;;;;;;;;486:8;;475:42;;;;;;;;401:123;;:::o",
+  "source": "pragma solidity >=0.4.22 <0.6.0;\nimport \"./PublicFormSubmission.sol\";\ncontract DelegatedPublicFormSubmission is PublicFormSubmission {\n    /// @dev Allow users with no ETH to participate in the survey\n    /// The user parameter is not necessary but ensures correct submissions\n    /// The Metamask signing scheme is changing quick and there's risk of\n    /// submissions producing wrong signer addresses\n    /// @dev The surveyId is the content hash of the survey IPFS has\n    /// which contains this contract's address and the network ID. Therefore\n    /// the surveyId prevents reusing this signature in other networks or contracts\n    /// @dev The front-end will filter by equal submissions, so with on a replay\n    /// attack, additional submissions will be ignored\n    function delegatedSubmit(\n        bytes32 surveyId,\n        bytes32 answers,\n        address user,\n        bytes32 r,\n        bytes32 s,\n        uint8 v\n    ) public {\n        /// @dev Pre-hashed value to save hash\n        /// [ \"bytes32 Survey ID\", \"bytes32 Answers\" ]\n        /// 0xb6a5021c7e19977fdd997afd3c98f64fd1c39faa37ce5d847d7ae2483519c5f4\n        bytes32 schemaHash = 0xb6a5021c7e19977fdd997afd3c98f64fd1c39faa37ce5d847d7ae2483519c5f4;\n\n        bytes32 _hash = keccak256(abi.encode(\n            schemaHash,\n\t        keccak256(abi.encode(surveyId, answers))\n        ));\n\n\t\taddress signer = ecrecover(_hash, v, r, s);\n        require(signer == user);\n        emit Submission(surveyId, signer, answers);\n\t}\n}",
   "sourcePath": "/home/lion/Documents/d4rm/ethereum-backend/contracts/DelegatedPublicFormSubmission.sol",
   "ast": {
     "absolutePath": "/home/lion/Documents/d4rm/ethereum-backend/contracts/DelegatedPublicFormSubmission.sol",
@@ -116,8 +116,8 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 63,
-        "sourceUnit": 150,
-        "src": "34:36:0",
+        "sourceUnit": 146,
+        "src": "33:36:0",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -130,20 +130,20 @@
               "id": 3,
               "name": "PublicFormSubmission",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 149,
-              "src": "114:20:0",
+              "referencedDeclaration": 145,
+              "src": "112:20:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PublicFormSubmission_$149",
+                "typeIdentifier": "t_contract$_PublicFormSubmission_$145",
                 "typeString": "contract PublicFormSubmission"
               }
             },
             "id": 4,
             "nodeType": "InheritanceSpecifier",
-            "src": "114:20:0"
+            "src": "112:20:0"
           }
         ],
         "contractDependencies": [
-          149
+          145
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -151,7 +151,7 @@
         "id": 62,
         "linearizedBaseContracts": [
           62,
-          149
+          145
         ],
         "name": "DelegatedPublicFormSubmission",
         "nodeType": "ContractDefinition",
@@ -160,7 +160,7 @@
             "body": {
               "id": 60,
               "nodeType": "Block",
-              "src": "945:547:0",
+              "src": "940:547:0",
               "statements": [
                 {
                   "assignments": [
@@ -173,7 +173,7 @@
                       "name": "schemaHash",
                       "nodeType": "VariableDeclaration",
                       "scope": 60,
-                      "src": "1136:18:0",
+                      "src": "1131:18:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -184,7 +184,7 @@
                         "id": 19,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1136:7:0",
+                        "src": "1131:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -205,7 +205,7 @@
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "1157:66:0",
+                    "src": "1152:66:0",
                     "subdenomination": null,
                     "typeDescriptions": {
                       "typeIdentifier": "t_rational_82612482779493992963663401662602306969245510543844383008776067506283128407540_by_1",
@@ -214,7 +214,7 @@
                     "value": "0xb6a5021c7e19977fdd997afd3c98f64fd1c39faa37ce5d847d7ae2483519c5f4"
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1136:87:0"
+                  "src": "1131:87:0"
                 },
                 {
                   "assignments": [
@@ -227,7 +227,7 @@
                       "name": "_hash",
                       "nodeType": "VariableDeclaration",
                       "scope": 60,
-                      "src": "1234:13:0",
+                      "src": "1229:13:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -238,7 +238,7 @@
                         "id": 23,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1234:7:0",
+                        "src": "1229:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -262,7 +262,7 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 20,
-                            "src": "1284:10:0",
+                            "src": "1279:10:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
                               "typeString": "bytes32"
@@ -281,7 +281,7 @@
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
                                     "referencedDeclaration": 6,
-                                    "src": "1326:8:0",
+                                    "src": "1321:8:0",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_bytes32",
                                       "typeString": "bytes32"
@@ -294,7 +294,7 @@
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
                                     "referencedDeclaration": 8,
-                                    "src": "1336:7:0",
+                                    "src": "1331:7:0",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_bytes32",
                                       "typeString": "bytes32"
@@ -318,8 +318,8 @@
                                     "name": "abi",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 151,
-                                    "src": "1315:3:0",
+                                    "referencedDeclaration": 147,
+                                    "src": "1310:3:0",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_magic_abi",
                                       "typeString": "abi"
@@ -333,7 +333,7 @@
                                   "memberName": "encode",
                                   "nodeType": "MemberAccess",
                                   "referencedDeclaration": null,
-                                  "src": "1315:10:0",
+                                  "src": "1310:10:0",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_abiencode_pure$__$returns$_t_bytes_memory_ptr_$",
                                     "typeString": "function () pure returns (bytes memory)"
@@ -347,7 +347,7 @@
                                 "lValueRequested": false,
                                 "names": [],
                                 "nodeType": "FunctionCall",
-                                "src": "1315:29:0",
+                                "src": "1310:29:0",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_bytes_memory_ptr",
                                   "typeString": "bytes memory"
@@ -365,8 +365,8 @@
                               "name": "keccak256",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 158,
-                              "src": "1305:9:0",
+                              "referencedDeclaration": 154,
+                              "src": "1300:9:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
                                 "typeString": "function (bytes memory) pure returns (bytes32)"
@@ -380,7 +380,7 @@
                             "lValueRequested": false,
                             "names": [],
                             "nodeType": "FunctionCall",
-                            "src": "1305:40:0",
+                            "src": "1300:40:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
                               "typeString": "bytes32"
@@ -404,8 +404,8 @@
                             "name": "abi",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 151,
-                            "src": "1260:3:0",
+                            "referencedDeclaration": 147,
+                            "src": "1255:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_abi",
                               "typeString": "abi"
@@ -419,7 +419,7 @@
                           "memberName": "encode",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "1260:10:0",
+                          "src": "1255:10:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_abiencode_pure$__$returns$_t_bytes_memory_ptr_$",
                             "typeString": "function () pure returns (bytes memory)"
@@ -433,7 +433,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "1260:95:0",
+                        "src": "1255:95:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
                           "typeString": "bytes memory"
@@ -451,8 +451,8 @@
                       "name": "keccak256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 158,
-                      "src": "1250:9:0",
+                      "referencedDeclaration": 154,
+                      "src": "1245:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
                         "typeString": "function (bytes memory) pure returns (bytes32)"
@@ -466,14 +466,14 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1250:106:0",
+                    "src": "1245:106:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1234:122:0"
+                  "src": "1229:122:0"
                 },
                 {
                   "assignments": [
@@ -486,7 +486,7 @@
                       "name": "signer",
                       "nodeType": "VariableDeclaration",
                       "scope": 60,
-                      "src": "1361:14:0",
+                      "src": "1356:14:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -497,7 +497,7 @@
                         "id": 39,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1361:7:0",
+                        "src": "1356:7:0",
                         "stateMutability": "nonpayable",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -519,7 +519,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 24,
-                        "src": "1388:5:0",
+                        "src": "1383:5:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -532,7 +532,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 16,
-                        "src": "1395:1:0",
+                        "src": "1390:1:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint8",
                           "typeString": "uint8"
@@ -545,7 +545,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 12,
-                        "src": "1398:1:0",
+                        "src": "1393:1:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -558,7 +558,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 14,
-                        "src": "1401:1:0",
+                        "src": "1396:1:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -588,8 +588,8 @@
                       "name": "ecrecover",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 156,
-                      "src": "1378:9:0",
+                      "referencedDeclaration": 152,
+                      "src": "1373:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_ecrecover_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$_t_address_$",
                         "typeString": "function (bytes32,uint8,bytes32,bytes32) pure returns (address)"
@@ -603,14 +603,14 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1378:25:0",
+                    "src": "1373:25:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1361:42:0"
+                  "src": "1356:42:0"
                 },
                 {
                   "expression": {
@@ -634,7 +634,7 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 40,
-                          "src": "1421:6:0",
+                          "src": "1416:6:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -649,13 +649,13 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 10,
-                          "src": "1431:4:0",
+                          "src": "1426:4:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "1421:14:0",
+                        "src": "1416:14:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -673,11 +673,11 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        167,
-                        168
+                        163,
+                        164
                       ],
-                      "referencedDeclaration": 167,
-                      "src": "1413:7:0",
+                      "referencedDeclaration": 163,
+                      "src": "1408:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
@@ -691,7 +691,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1413:23:0",
+                    "src": "1408:23:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -699,7 +699,7 @@
                   },
                   "id": 53,
                   "nodeType": "ExpressionStatement",
-                  "src": "1413:23:0"
+                  "src": "1408:23:0"
                 },
                 {
                   "eventCall": {
@@ -712,7 +712,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 6,
-                        "src": "1462:8:0",
+                        "src": "1457:8:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -725,7 +725,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 40,
-                        "src": "1472:6:0",
+                        "src": "1467:6:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -738,7 +738,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 8,
-                        "src": "1480:7:0",
+                        "src": "1475:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -765,7 +765,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 129,
-                      "src": "1451:10:0",
+                      "src": "1446:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_bytes32_$_t_address_$_t_bytes32_$returns$__$",
                         "typeString": "function (bytes32,address,bytes32)"
@@ -779,7 +779,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1451:37:0",
+                    "src": "1446:37:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -787,11 +787,11 @@
                   },
                   "id": 59,
                   "nodeType": "EmitStatement",
-                  "src": "1446:42:0"
+                  "src": "1441:42:0"
                 }
               ]
             },
-            "documentation": "@dev Allow users with no ETH to participate in the survey\n The user parameter is not necessary but ensures correct submissions\n The Metamask signing scheme is changing quick and there's risk of\n submissions producing wrong signer addresses\n @dev The surveyId is the content hash of the survey IPFS has\n which contains this contract's address and the network ID. Therefore\n the surveyId prevents reusing this signature in other networks or contracts\n @dev The front-end will filter by equal submissions, so with on a replay \n attack, additional submissions will be ignored",
+            "documentation": "@dev Allow users with no ETH to participate in the survey\n The user parameter is not necessary but ensures correct submissions\n The Metamask signing scheme is changing quick and there's risk of\n submissions producing wrong signer addresses\n @dev The surveyId is the content hash of the survey IPFS has\n which contains this contract's address and the network ID. Therefore\n the surveyId prevents reusing this signature in other networks or contracts\n @dev The front-end will filter by equal submissions, so with on a replay\n attack, additional submissions will be ignored",
             "id": 61,
             "implemented": true,
             "kind": "function",
@@ -808,7 +808,7 @@
                   "name": "surveyId",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "811:16:0",
+                  "src": "808:16:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -819,7 +819,7 @@
                     "id": 5,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "811:7:0",
+                    "src": "808:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -834,7 +834,7 @@
                   "name": "answers",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "837:15:0",
+                  "src": "834:15:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -845,7 +845,7 @@
                     "id": 7,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "837:7:0",
+                    "src": "834:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -860,7 +860,7 @@
                   "name": "user",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "862:12:0",
+                  "src": "859:12:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -871,7 +871,7 @@
                     "id": 9,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "862:7:0",
+                    "src": "859:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -887,7 +887,7 @@
                   "name": "r",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "884:9:0",
+                  "src": "881:9:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -898,7 +898,7 @@
                     "id": 11,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "884:7:0",
+                    "src": "881:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -913,7 +913,7 @@
                   "name": "s",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "904:9:0",
+                  "src": "900:9:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -924,7 +924,7 @@
                     "id": 13,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "904:7:0",
+                    "src": "900:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -939,7 +939,7 @@
                   "name": "v",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "924:7:0",
+                  "src": "919:7:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -950,7 +950,7 @@
                     "id": 15,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "924:5:0",
+                    "src": "919:5:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -960,26 +960,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "801:136:0"
+              "src": "798:134:0"
             },
             "returnParameters": {
               "id": 18,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "945:0:0"
+              "src": "940:0:0"
             },
             "scope": 62,
-            "src": "777:715:0",
+            "src": "774:713:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
         "scope": 63,
-        "src": "72:1422:0"
+        "src": "70:1419:0"
       }
     ],
-    "src": "0:1495:0"
+    "src": "0:1489:0"
   },
   "legacyAST": {
     "absolutePath": "/home/lion/Documents/d4rm/ethereum-backend/contracts/DelegatedPublicFormSubmission.sol",
@@ -1011,8 +1011,8 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 63,
-        "sourceUnit": 150,
-        "src": "34:36:0",
+        "sourceUnit": 146,
+        "src": "33:36:0",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -1025,20 +1025,20 @@
               "id": 3,
               "name": "PublicFormSubmission",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 149,
-              "src": "114:20:0",
+              "referencedDeclaration": 145,
+              "src": "112:20:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PublicFormSubmission_$149",
+                "typeIdentifier": "t_contract$_PublicFormSubmission_$145",
                 "typeString": "contract PublicFormSubmission"
               }
             },
             "id": 4,
             "nodeType": "InheritanceSpecifier",
-            "src": "114:20:0"
+            "src": "112:20:0"
           }
         ],
         "contractDependencies": [
-          149
+          145
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -1046,7 +1046,7 @@
         "id": 62,
         "linearizedBaseContracts": [
           62,
-          149
+          145
         ],
         "name": "DelegatedPublicFormSubmission",
         "nodeType": "ContractDefinition",
@@ -1055,7 +1055,7 @@
             "body": {
               "id": 60,
               "nodeType": "Block",
-              "src": "945:547:0",
+              "src": "940:547:0",
               "statements": [
                 {
                   "assignments": [
@@ -1068,7 +1068,7 @@
                       "name": "schemaHash",
                       "nodeType": "VariableDeclaration",
                       "scope": 60,
-                      "src": "1136:18:0",
+                      "src": "1131:18:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1079,7 +1079,7 @@
                         "id": 19,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1136:7:0",
+                        "src": "1131:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1100,7 +1100,7 @@
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "1157:66:0",
+                    "src": "1152:66:0",
                     "subdenomination": null,
                     "typeDescriptions": {
                       "typeIdentifier": "t_rational_82612482779493992963663401662602306969245510543844383008776067506283128407540_by_1",
@@ -1109,7 +1109,7 @@
                     "value": "0xb6a5021c7e19977fdd997afd3c98f64fd1c39faa37ce5d847d7ae2483519c5f4"
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1136:87:0"
+                  "src": "1131:87:0"
                 },
                 {
                   "assignments": [
@@ -1122,7 +1122,7 @@
                       "name": "_hash",
                       "nodeType": "VariableDeclaration",
                       "scope": 60,
-                      "src": "1234:13:0",
+                      "src": "1229:13:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1133,7 +1133,7 @@
                         "id": 23,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1234:7:0",
+                        "src": "1229:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1157,7 +1157,7 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 20,
-                            "src": "1284:10:0",
+                            "src": "1279:10:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
                               "typeString": "bytes32"
@@ -1176,7 +1176,7 @@
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
                                     "referencedDeclaration": 6,
-                                    "src": "1326:8:0",
+                                    "src": "1321:8:0",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_bytes32",
                                       "typeString": "bytes32"
@@ -1189,7 +1189,7 @@
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
                                     "referencedDeclaration": 8,
-                                    "src": "1336:7:0",
+                                    "src": "1331:7:0",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_bytes32",
                                       "typeString": "bytes32"
@@ -1213,8 +1213,8 @@
                                     "name": "abi",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 151,
-                                    "src": "1315:3:0",
+                                    "referencedDeclaration": 147,
+                                    "src": "1310:3:0",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_magic_abi",
                                       "typeString": "abi"
@@ -1228,7 +1228,7 @@
                                   "memberName": "encode",
                                   "nodeType": "MemberAccess",
                                   "referencedDeclaration": null,
-                                  "src": "1315:10:0",
+                                  "src": "1310:10:0",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_abiencode_pure$__$returns$_t_bytes_memory_ptr_$",
                                     "typeString": "function () pure returns (bytes memory)"
@@ -1242,7 +1242,7 @@
                                 "lValueRequested": false,
                                 "names": [],
                                 "nodeType": "FunctionCall",
-                                "src": "1315:29:0",
+                                "src": "1310:29:0",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_bytes_memory_ptr",
                                   "typeString": "bytes memory"
@@ -1260,8 +1260,8 @@
                               "name": "keccak256",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 158,
-                              "src": "1305:9:0",
+                              "referencedDeclaration": 154,
+                              "src": "1300:9:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
                                 "typeString": "function (bytes memory) pure returns (bytes32)"
@@ -1275,7 +1275,7 @@
                             "lValueRequested": false,
                             "names": [],
                             "nodeType": "FunctionCall",
-                            "src": "1305:40:0",
+                            "src": "1300:40:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
                               "typeString": "bytes32"
@@ -1299,8 +1299,8 @@
                             "name": "abi",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 151,
-                            "src": "1260:3:0",
+                            "referencedDeclaration": 147,
+                            "src": "1255:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_abi",
                               "typeString": "abi"
@@ -1314,7 +1314,7 @@
                           "memberName": "encode",
                           "nodeType": "MemberAccess",
                           "referencedDeclaration": null,
-                          "src": "1260:10:0",
+                          "src": "1255:10:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_abiencode_pure$__$returns$_t_bytes_memory_ptr_$",
                             "typeString": "function () pure returns (bytes memory)"
@@ -1328,7 +1328,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "1260:95:0",
+                        "src": "1255:95:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
                           "typeString": "bytes memory"
@@ -1346,8 +1346,8 @@
                       "name": "keccak256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 158,
-                      "src": "1250:9:0",
+                      "referencedDeclaration": 154,
+                      "src": "1245:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
                         "typeString": "function (bytes memory) pure returns (bytes32)"
@@ -1361,14 +1361,14 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1250:106:0",
+                    "src": "1245:106:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1234:122:0"
+                  "src": "1229:122:0"
                 },
                 {
                   "assignments": [
@@ -1381,7 +1381,7 @@
                       "name": "signer",
                       "nodeType": "VariableDeclaration",
                       "scope": 60,
-                      "src": "1361:14:0",
+                      "src": "1356:14:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1392,7 +1392,7 @@
                         "id": 39,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
-                        "src": "1361:7:0",
+                        "src": "1356:7:0",
                         "stateMutability": "nonpayable",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1414,7 +1414,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 24,
-                        "src": "1388:5:0",
+                        "src": "1383:5:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1427,7 +1427,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 16,
-                        "src": "1395:1:0",
+                        "src": "1390:1:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint8",
                           "typeString": "uint8"
@@ -1440,7 +1440,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 12,
-                        "src": "1398:1:0",
+                        "src": "1393:1:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1453,7 +1453,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 14,
-                        "src": "1401:1:0",
+                        "src": "1396:1:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1483,8 +1483,8 @@
                       "name": "ecrecover",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 156,
-                      "src": "1378:9:0",
+                      "referencedDeclaration": 152,
+                      "src": "1373:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_ecrecover_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$_t_address_$",
                         "typeString": "function (bytes32,uint8,bytes32,bytes32) pure returns (address)"
@@ -1498,14 +1498,14 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1378:25:0",
+                    "src": "1373:25:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1361:42:0"
+                  "src": "1356:42:0"
                 },
                 {
                   "expression": {
@@ -1529,7 +1529,7 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 40,
-                          "src": "1421:6:0",
+                          "src": "1416:6:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -1544,13 +1544,13 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 10,
-                          "src": "1431:4:0",
+                          "src": "1426:4:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
                           }
                         },
-                        "src": "1421:14:0",
+                        "src": "1416:14:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bool",
                           "typeString": "bool"
@@ -1568,11 +1568,11 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        167,
-                        168
+                        163,
+                        164
                       ],
-                      "referencedDeclaration": 167,
-                      "src": "1413:7:0",
+                      "referencedDeclaration": 163,
+                      "src": "1408:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
@@ -1586,7 +1586,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1413:23:0",
+                    "src": "1408:23:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -1594,7 +1594,7 @@
                   },
                   "id": 53,
                   "nodeType": "ExpressionStatement",
-                  "src": "1413:23:0"
+                  "src": "1408:23:0"
                 },
                 {
                   "eventCall": {
@@ -1607,7 +1607,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 6,
-                        "src": "1462:8:0",
+                        "src": "1457:8:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1620,7 +1620,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 40,
-                        "src": "1472:6:0",
+                        "src": "1467:6:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1633,7 +1633,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 8,
-                        "src": "1480:7:0",
+                        "src": "1475:7:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
                           "typeString": "bytes32"
@@ -1660,7 +1660,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 129,
-                      "src": "1451:10:0",
+                      "src": "1446:10:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_bytes32_$_t_address_$_t_bytes32_$returns$__$",
                         "typeString": "function (bytes32,address,bytes32)"
@@ -1674,7 +1674,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "1451:37:0",
+                    "src": "1446:37:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
@@ -1682,11 +1682,11 @@
                   },
                   "id": 59,
                   "nodeType": "EmitStatement",
-                  "src": "1446:42:0"
+                  "src": "1441:42:0"
                 }
               ]
             },
-            "documentation": "@dev Allow users with no ETH to participate in the survey\n The user parameter is not necessary but ensures correct submissions\n The Metamask signing scheme is changing quick and there's risk of\n submissions producing wrong signer addresses\n @dev The surveyId is the content hash of the survey IPFS has\n which contains this contract's address and the network ID. Therefore\n the surveyId prevents reusing this signature in other networks or contracts\n @dev The front-end will filter by equal submissions, so with on a replay \n attack, additional submissions will be ignored",
+            "documentation": "@dev Allow users with no ETH to participate in the survey\n The user parameter is not necessary but ensures correct submissions\n The Metamask signing scheme is changing quick and there's risk of\n submissions producing wrong signer addresses\n @dev The surveyId is the content hash of the survey IPFS has\n which contains this contract's address and the network ID. Therefore\n the surveyId prevents reusing this signature in other networks or contracts\n @dev The front-end will filter by equal submissions, so with on a replay\n attack, additional submissions will be ignored",
             "id": 61,
             "implemented": true,
             "kind": "function",
@@ -1703,7 +1703,7 @@
                   "name": "surveyId",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "811:16:0",
+                  "src": "808:16:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1714,7 +1714,7 @@
                     "id": 5,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "811:7:0",
+                    "src": "808:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1729,7 +1729,7 @@
                   "name": "answers",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "837:15:0",
+                  "src": "834:15:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1740,7 +1740,7 @@
                     "id": 7,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "837:7:0",
+                    "src": "834:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1755,7 +1755,7 @@
                   "name": "user",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "862:12:0",
+                  "src": "859:12:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1766,7 +1766,7 @@
                     "id": 9,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "862:7:0",
+                    "src": "859:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1782,7 +1782,7 @@
                   "name": "r",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "884:9:0",
+                  "src": "881:9:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1793,7 +1793,7 @@
                     "id": 11,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "884:7:0",
+                    "src": "881:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1808,7 +1808,7 @@
                   "name": "s",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "904:9:0",
+                  "src": "900:9:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1819,7 +1819,7 @@
                     "id": 13,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "904:7:0",
+                    "src": "900:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -1834,7 +1834,7 @@
                   "name": "v",
                   "nodeType": "VariableDeclaration",
                   "scope": 61,
-                  "src": "924:7:0",
+                  "src": "919:7:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1845,7 +1845,7 @@
                     "id": 15,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
-                    "src": "924:5:0",
+                    "src": "919:5:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint8",
                       "typeString": "uint8"
@@ -1855,48 +1855,60 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "801:136:0"
+              "src": "798:134:0"
             },
             "returnParameters": {
               "id": 18,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "945:0:0"
+              "src": "940:0:0"
             },
             "scope": 62,
-            "src": "777:715:0",
+            "src": "774:713:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
         "scope": 63,
-        "src": "72:1422:0"
+        "src": "70:1419:0"
       }
     ],
-    "src": "0:1495:0"
+    "src": "0:1489:0"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.3+commit.10d17f24.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0x49931EdD00a4a03855472CD315E82Bc33dA3e8a7",
+      "transactionHash": "0x38fe3bfdd8428bee28e5753e2c453da7b9c59d95c3ff60648ba1def078d507c8"
+    },
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0x49931EdD00a4a03855472CD315E82Bc33dA3e8a7",
+      "transactionHash": "0x38fe3bfdd8428bee28e5753e2c453da7b9c59d95c3ff60648ba1def078d507c8"
+    },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x2d923815daFd1aE523E2d654E4e6C9D86739c383",
-      "transactionHash": "0x617bd4e358a08b6e468a599d74406901b698018f2d72cac3262c43ba6685ce56"
+      "address": "0xC053c583b56cb91A909b5286dD7927562720738e",
+      "transactionHash": "0xf493e6cacfa5e8517322f35e44c39c17c41ca58eb49c2eaa38a95aa7930a3165"
     }
   },
   "schemaVersion": "3.0.8",
-  "updatedAt": "2019-05-01T09:01:39.199Z",
+  "updatedAt": "2019-05-07T12:13:49.369Z",
   "devdoc": {
     "methods": {
       "delegatedSubmit(bytes32,bytes32,address,bytes32,bytes32,uint8)": {
-        "details": "Allow users with no ETH to participate in the survey The user parameter is not necessary but ensures correct submissions The Metamask signing scheme is changing quick and there's risk of submissions producing wrong signer addressesThe surveyId is the content hash of the survey IPFS has which contains this contract's address and the network ID. Therefore the surveyId prevents reusing this signature in other networks or contractsThe front-end will filter by equal submissions, so with on a replay  attack, additional submissions will be ignored"
+        "details": "Allow users with no ETH to participate in the survey The user parameter is not necessary but ensures correct submissions The Metamask signing scheme is changing quick and there's risk of submissions producing wrong signer addressesThe surveyId is the content hash of the survey IPFS has which contains this contract's address and the network ID. Therefore the surveyId prevents reusing this signature in other networks or contractsThe front-end will filter by equal submissions, so with on a replay attack, additional submissions will be ignored"
       },
       "submit(bytes32,bytes32)": {
-        "details": "Answers are encoded as a multichoice each hex character of the bytes32 array 0x13000000... Means the second option of the first question and the fourth of the second. "
+        "details": "Answers are encoded as a multichoice each hex character of the bytes32 array 0x13000000... Means the second option of the first question and the fourth of the second."
       }
     }
   },

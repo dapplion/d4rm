@@ -1,7 +1,5 @@
 pragma solidity >=0.4.22 <0.6.0;
-
 import "./PublicFormSubmission.sol";
-
 contract DelegatedPublicFormSubmission is PublicFormSubmission {
     /// @dev Allow users with no ETH to participate in the survey
     /// The user parameter is not necessary but ensures correct submissions
@@ -10,14 +8,14 @@ contract DelegatedPublicFormSubmission is PublicFormSubmission {
     /// @dev The surveyId is the content hash of the survey IPFS has
     /// which contains this contract's address and the network ID. Therefore
     /// the surveyId prevents reusing this signature in other networks or contracts
-    /// @dev The front-end will filter by equal submissions, so with on a replay 
+    /// @dev The front-end will filter by equal submissions, so with on a replay
     /// attack, additional submissions will be ignored
     function delegatedSubmit(
         bytes32 surveyId,
         bytes32 answers,
         address user,
-        bytes32 r, 
-        bytes32 s, 
+        bytes32 r,
+        bytes32 s,
         uint8 v
     ) public {
         /// @dev Pre-hashed value to save hash
