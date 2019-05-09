@@ -12,4 +12,8 @@ ethereum-backend/build
 ## Critical sensitive data
 ethereum-backend/.privateKey
 
+# Relay
+relay/node_modules
+relay/.env
+
 .DS_Store

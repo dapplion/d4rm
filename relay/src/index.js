@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const Web3 = require("web3");
@@ -10,12 +11,9 @@ const ethUtil = require("ethereumjs-util");
 const delegatedPublicFormSubmissionAbi = require("./delegatedPublicFormSubmissionAbi.json");
 
 /**
- * The SwarmCity faucet will send test ETH to users that who it.
+ * DR4M relay
  * The request must be:
- * 'GET' to 'https://path.to.faucet/' + address
- *
- * The conditions to execute the refill are:
- * - userBalance > upperThresholdEth
+ * 'GET' to 'http://path.to.faucet/submit/' + query
  */
 
 /* eslint-disable no-console */
@@ -25,7 +23,7 @@ const gasPriceGwei = 1;
 const gasLimit = 50000; // Only ETH transaction
 const chainId = 5; // Goerli
 const chainName = "goerli";
-const privateKey = process.argv[2] || process.env.PRIVATE_KEY;
+const privateKey = process.env.PRIVATE_KEY;
 const projectId = "89b12e3b00cf40f5ae26cc72b3284a44";
 const web3Provider =
   process.env.WEB3_PROVIDER || `https://${chainName}.infura.io/v3/${projectId}`;
@@ -45,7 +43,7 @@ const web3 = new Web3(web3Provider);
 // Compute private key and address
 if (!privateKey)
   throw Error(
-    "You must provide a private address for the faucet sender. Either as env PRIVATE_KEY=842b0041..., or process argument node index.js 842b0041..."
+    "You must provide an ENV variable PRIVATE_KEY=842b0041... You can use a .env file too"
   );
 const senderPrivateKey = "0x" + privateKey.replace("0x", "");
 const senderAddress = web3.eth.accounts.privateKeyToAccount(senderPrivateKey)
