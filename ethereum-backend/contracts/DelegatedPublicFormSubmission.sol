@@ -29,7 +29,7 @@ contract DelegatedPublicFormSubmission is PublicFormSubmission {
         ));
 
 		address signer = ecrecover(_hash, v, r, s);
-        require(signer == user);
+        require(signer == user, "Wrong signature");
         emit Submission(surveyId, signer, answers);
 	}
 }

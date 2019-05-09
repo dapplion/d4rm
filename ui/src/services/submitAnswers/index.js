@@ -4,7 +4,7 @@ import { getBalance, getSubmitContract } from "services/ethereumMethods";
 import signAnswers from "./signAnswers";
 import signAnswersWithMetamask from "./signAnswersWithMetamask";
 import validateSignature from "./validateSignature";
-
+import requestRelaySubmit from "./requestRelaySubmit";
 // Utils
 import { encodeAnswers } from "utils/answersCoder";
 import hashToBytes32 from "utils/hashToBytes32";
@@ -64,12 +64,12 @@ export default async function submitAnswers({ answers, submit, hash }) {
   const answersBytes = encodeAnswers(answers);
   const surveyId = hashToBytes32(hash);
 
-  let tx;
+  let txHash;
   if (useDelegateSubmit) {
-    tx = await delegateSubmit({ submit, account, surveyId, answersBytes });
+    txHash = await delegateSubmit({ submit, account, surveyId, answersBytes });
   } else {
     // Directly submit to contract
-    tx = await directSubmit({
+    txHash = await directSubmit({
       submit,
       network,
       account,
@@ -77,7 +77,8 @@ export default async function submitAnswers({ answers, submit, hash }) {
       answersBytes
     });
   }
-  console.log(tx);
+  console.log("submitAnswers result", txHash);
+  return txHash;
 }
 
 async function delegateSubmit({ submit, account, surveyId, answersBytes }) {
@@ -110,21 +111,25 @@ async function delegateSubmit({ submit, account, surveyId, answersBytes }) {
     surveyId,
     answersBytes
   };
+  const txHash = await requestRelaySubmit(relayParams);
+  console.log(`Successfully submitted to relay`, txHash);
+  return txHash;
 }
 
-async function directSubmit({
-  submit,
-  network,
-  account,
-  surveyId,
-  answersBytes
-}) {
+function directSubmit({ submit, network, account, surveyId, answersBytes }) {
+  console.log("Attempting directSubmit");
   const submitContract = getSubmitContract({
     address: submit.address,
     network,
     withMetamask: account.isMetamask
   });
-  const tx = await submitContract.methods.submit(surveyId, answersBytes).send({
-    from: account.address
+  return new Promise((resolve, reject) => {
+    submitContract.methods
+      .submit(surveyId, answersBytes)
+      .send({ from: account.address }, (error, transactionHash) => {
+        console.log(`Direct submit response`, error, transactionHash);
+        if (error) reject(Error(error.message || error));
+        else resolve(transactionHash);
+      });
   });
 }

@@ -3,12 +3,13 @@ const rawTransaction = require("./rawTransaction");
 const waitForTx = require("./waitForTx");
 const generateDeployTx = require("./generateDeployTx");
 const { getEtherscanUrl } = require("./etherscanData");
+const truffleFlattener = require("truffle-flattener");
 
 const toBN = web3.utils.toBN;
 
 async function deploy(contractId) {
-  const ContractInstance = artifacts.require(contractId);
-  const network_id = ContractInstance.network_id;
+  const ContractArtifacts = artifacts.require(contractId);
+  const network_id = ContractArtifacts.network_id;
 
   const gasEstimate = await web3.eth.estimateGas({
     data: rawTransaction.data
@@ -49,7 +50,7 @@ async function deploy(contractId) {
   await waitForTx(deployTx.transactionHash, web3);
 
   // Write truffle artifacts
-  const artifactsJson = ContractInstance._json;
+  const artifactsJson = ContractArtifacts._json;
   artifactsJson.networks[String(network_id)] = {
     events: {},
     links: {},
@@ -60,6 +61,32 @@ async function deploy(contractId) {
     `build/contracts/${contractId}.json`,
     JSON.stringify(artifactsJson, null, 2)
   );
+
+  // Log info to valide source on etherscan
+  // Get config data
+  const metadata = JSON.parse(ContractArtifacts.metadata);
+  const compilerversion = "v" + metadata.compiler.version;
+  const optimizationEnabled = metadata.settings.optimizer.enabled;
+  const optimizationRuns = metadata.settings.optimizer.runs;
+  const sourceCode = await truffleFlattener([`contracts/${contractId}.sol`]);
+
+  console.log(`
+  
+  Info to verify contract in etherscan.
+  Flattened source code:
+
+=========================================================
+=========================================================
+${sourceCode}
+=========================================================
+=========================================================
+
+  compilerversion:     ${compilerversion}
+  optimizationEnabled: ${optimizationEnabled}
+  optimizationRuns:    ${optimizationRuns}
+
+  Go to: ${getEtherscanUrl(network_id)}/address/${contractAddr}#code
+  `);
 
   // Log results
   console.log(`Successfully deployed contract 

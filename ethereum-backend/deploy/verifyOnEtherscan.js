@@ -15,13 +15,13 @@ const apikey = "2GTVV7HHTK8CCG2NFK5NRXYPY6DKINJH48"; //A valid API-Key is requir
  */
 async function verifyOnEtherscan(contract) {
   const ContractArtifacts = artifacts.require(contract);
+  const network_id = ContractArtifacts.network_id;
 
   // Get address from an existing deploy
-  const network = await web3.eth.net.getNetworkType(); // "private", "kovan"
   const contractInstance = await ContractArtifacts.deployed();
   const contractaddress = contractInstance.address;
 
-  if (await isContractVerified(contractaddress, network)) {
+  if (await isContractVerified(contractaddress, network_id)) {
     return console.log(`Contract ${contractaddress} is already verified`);
   }
 
@@ -52,7 +52,7 @@ async function verifyOnEtherscan(contract) {
      *   };
      */
     const { status, result } = await promisify(request.post)({
-      url: getEtherscanApiUrl(network),
+      url: getEtherscanApiUrl(network_id),
       form: {
         apikey,
         module: "contract", // Do not change
@@ -72,12 +72,15 @@ async function verifyOnEtherscan(contract) {
     if (error) throw Error(`Etherscan API ${error}`);
 
     while (true) {
-      const { pending, success } = await checkVerificationStatus(guid, network);
+      const { pending, success } = await checkVerificationStatus(
+        guid,
+        network_id
+      );
       if (pending) console.log("Verification pending...");
       if (success) {
         console.log("Successfully verified!");
         console.log(
-          `${getEtherscanUrl(network)}/address/${contractaddress}#code`
+          `${getEtherscanUrl(network_id)}/address/${contractaddress}#code`
         );
         return;
       }
@@ -89,7 +92,7 @@ async function verifyOnEtherscan(contract) {
   }
 }
 
-async function isContractVerified(contractAddress, network) {
+async function isContractVerified(contractAddress, network_id) {
   /**
    * - On error
    *   response = {
@@ -98,7 +101,7 @@ async function isContractVerified(contractAddress, network) {
    *     result: "Contract source code not verified"
    *   };
    */
-  const etherscanApiUrl = getEtherscanApiUrl(network);
+  const etherscanApiUrl = getEtherscanApiUrl(network_id);
   const response = await promisify(request)(
     `${etherscanApiUrl}?module=contract&action=getabi&address=${contractAddress}`
   ).then(res => JSON.parse(res.body));
@@ -109,7 +112,7 @@ async function isContractVerified(contractAddress, network) {
  *
  * @param {string} guid "ezq878u486pzijkvvmerl6a9mzwhv6sefgvqi5tkwceejc7tvn"
  */
-async function checkVerificationStatus(guid, network) {
+async function checkVerificationStatus(guid, network_id) {
   /**
    * - If verification pending:
    *   { status: '0', message: 'NOTOK', result: 'Pending in queue' }
@@ -117,7 +120,7 @@ async function checkVerificationStatus(guid, network) {
    *   { status: '0', message: 'NOTOK', result: 'Fail - Unable to verify' }
    */
   const { status, result } = await promisify(request.get)({
-    url: getEtherscanApiUrl(network),
+    url: getEtherscanApiUrl(network_id),
     form: {
       guid,
       module: "contract",

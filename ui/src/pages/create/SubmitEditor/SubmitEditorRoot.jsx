@@ -31,11 +31,14 @@ const submitOptions = [
   // }
 ];
 
+// const keylessDeployedAddress = "0xA56678Bc585cdB7Fdcd24176401BDf8D24927505";
+const keylessDeployedAddressWithDelegateSubmit =
+  "0x24C273e60D9e3C68662DDC769Afcd23Ad67EfF68";
 const preDeployedPublicContract = {
-  ropsten: "0xA56678Bc585cdB7Fdcd24176401BDf8D24927505",
-  kovan: "0xA56678Bc585cdB7Fdcd24176401BDf8D24927505",
-  rinkeby: "0xA56678Bc585cdB7Fdcd24176401BDf8D24927505",
-  goerli: "0xA56678Bc585cdB7Fdcd24176401BDf8D24927505"
+  ropsten: keylessDeployedAddressWithDelegateSubmit,
+  kovan: keylessDeployedAddressWithDelegateSubmit,
+  rinkeby: keylessDeployedAddressWithDelegateSubmit,
+  goerli: keylessDeployedAddressWithDelegateSubmit
 };
 
 const availableNetworks = Object.keys(preDeployedPublicContract);

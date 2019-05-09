@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const Web3 = require("web3");
 const web3Utils = require("web3-utils");
@@ -9,6 +10,8 @@ const wrapErrors = require("./utils/wrapErrors");
 const isBytes32 = require("./utils/isBytes32");
 const ethUtil = require("ethereumjs-util");
 const delegatedPublicFormSubmissionAbi = require("./delegatedPublicFormSubmissionAbi.json");
+
+app.use(cors());
 
 /**
  * DR4M relay
@@ -68,7 +71,7 @@ app.get(
   "/status",
   wrapErrors(async (_, res) => {
     const faucetStatus = await getFaucetStatus();
-    res.json(faucetStatus);
+    res.send(JSON.stringify(faucetStatus));
   })
 );
 
@@ -146,7 +149,7 @@ app.get(
       console.log(
         `Broadcasted a delegatedSubmit for ${userAddress}: ${etherscanTxLink}`
       );
-      res.json({ hash, url: etherscanTxLink });
+      res.send(hash);
     });
   })
 );

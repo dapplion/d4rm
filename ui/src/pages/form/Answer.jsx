@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import submitAnswers from "services/submitAnswers";
 // Components
 import FormDisplay from "./FormDisplay";
@@ -17,20 +17,8 @@ const faucetUrl = {
   goerli: "https://goerli-faucet.slock.it/"
 };
 
-function getAccountBalance(account, network) {
-  const params = encodeURI(JSON.stringify([account, "latest"]));
-  const url = `https://api.infura.io/v1/jsonrpc/${network}/eth_getBalance?params=${params}`;
-}
-
 function Answer({ form, hash }) {
   const { title, description, questions, submit } = form;
-
-  // #### TODO
-  // const [metamaskStatus, setMetamaskStatus] = useState("");
-
-  // useEffect(() => {
-  //   if (window.ethereum) {}
-  // }, []);
 
   const [answers, setAnswers] = useState({});
   const [txHash, setTxHash] = useState("");

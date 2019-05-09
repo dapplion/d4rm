@@ -14,7 +14,6 @@ deployToAllNetworks();
  */
 
 async function deployToAllNetworks() {
-  await shell(`truffle exec ${deployPath}`);
   await Promise.all(
     networks.map(async network => {
       try {

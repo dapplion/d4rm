@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:4000";
+const baseUrl = "http://37.44.215.124:3000";
 
 export default function requestRelaySubmit({
   sig,
@@ -15,7 +15,14 @@ export default function requestRelaySubmit({
     answersBytes
   };
   const url = getRelayUrl(baseUrl, relayParams);
-  return fetch(url).then(r => r.json());
+  console.log(`Submitting to relay: ${url}`);
+  // The submit endPoint response the txHash as plain text
+  return fetch(url)
+    .then(r => r.text())
+    .then(txHash => {
+      console.log(`Relay response: ${txHash}`);
+      return txHash;
+    });
 }
 
 // Utils
