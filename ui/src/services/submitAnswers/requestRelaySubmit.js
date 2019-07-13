@@ -1,4 +1,4 @@
-const baseUrl = "http://37.44.215.124:3000";
+const baseUrl = "https://d4rm.tk:8080";
 
 export default function requestRelaySubmit({
   sig,
